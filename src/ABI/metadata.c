@@ -1,0 +1,181 @@
+#include <metadata.h>
+#include <terminal.h>
+
+static const char* ObjectLoader_name (const ObjectLoader *this);
+static ObjectType ObjectLoader_type (const ObjectLoader* this);
+static size_t ObjectLoader_size (const ObjectLoader* this);
+
+static const char* Object_name (Object* this);
+static ObjectType Object_type (Object* this);
+static size_t Object_size (Object* this);
+static ObjectID Object_id (Object* this);
+static bool Object_open (Object* this);
+static void Object_close (Object* this);
+static bool Object_isOpen (Object* this);
+static void Object_setFactory(Object* this, Factory* factory);
+static Factory* Object_factory(Object* this);
+
+
+const ObjectLoaderFuncs ObjectLoader_vft = {
+    .name = ObjectLoader_name,
+    .type = ObjectLoader_type,
+    .size = ObjectLoader_size
+};
+
+const ObjectFuncs Object_vft = {
+    .name       = Object_name,
+    .type       = Object_type,
+    .size       = Object_size,
+    .id         = Object_id,
+    .open       = Object_open,
+    .close      = Object_close,
+    .isOpen     = Object_isOpen,
+    .setFactory = Object_setFactory,
+    .factory    = Object_factory
+};
+
+const ObjectMetaFuncs ObjectMeta_vft = {
+    .name       = META_FUNC(Object,name,VAR_STRING,FUNC_FIXED),
+    .type       = META_FUNC(Object,type,VAR_INTEGER,FUNC_FIXED),
+    .size       = META_FUNC(Object,size,VAR_INTEGER,FUNC_FIXED),
+    .id         = META_FUNC(Object,id,VAR_INTEGER,FUNC_FIXED),
+    .open       = META_FUNC(Object,open,VAR_BOOLEAN,FUNC_FIXED),
+    .close      = META_FUNC(Object,close,VAR_VOID,FUNC_FIXED),
+    .isOpen     = META_FUNC(Object,isOpen,VAR_BOOLEAN,FUNC_FIXED),
+    .setFactory = META_FUNC(Object,setFactory,VAR_VOID,FUNC_FIXED,MARG(VAR_PTR)),
+    .factory    = META_FUNC(Object,factory,VAR_PTR,FUNC_FIXED)
+};
+
+OBJECT_REGISTER(Object,OBJECT,Object_vft,ObjectMeta_vft,0,srand48(mix(clock(),time(NULL),getpid())))
+
+/* -- Module -- */
+
+static const char* Object_name (Object* this){
+    return (this && this->_meta) ? this->_meta->_name : NULL;
+}
+
+static ObjectType Object_type (Object* this){
+    return (this && this->_meta) ? this->_meta->_type : 0;
+}
+
+static size_t Object_size (Object* this){
+    return (this && this->_meta) ? this->_meta->_size : 0;
+}
+
+static ObjectID Object_id (Object* this){
+    return (this && this->_meta) ? this->_data._id : 0;
+}
+
+static bool Object_open (Object* this){
+    return (this) ? this->_data._open = true : false;
+}
+
+static void Object_close (Object* this){
+    if(this) this->_data._open = false;
+}
+
+static bool Object_isOpen (Object* this){
+    return (this) ? this->_data._open : false;
+}
+
+static void Object_setFactory(Object* this, Factory* factory){
+    if(this) this->_data._factory = factory;
+}
+
+static Factory* Object_factory(Object* this){
+    return (this) ? this->_data._factory : NULL;
+}
+
+/* -- Module Loader -- */
+ 
+static const char* ObjectLoader_name (const ObjectLoader *this){
+    return (this) ? this->_meta._name : NULL;
+}
+
+static ObjectType ObjectLoader_type (const ObjectLoader* this){
+    return (this) ? this->_meta._type : 0;
+}
+
+static size_t ObjectLoader_size (const ObjectLoader* this){
+    return (this) ? this->_meta._size : 0;
+}
+
+const char* const type_to_string(ObjectType type){
+    if(type & OBJECT_FACTORY)   return "Factory";
+    if(type & OBJECT_SHELL)     return "Shell";
+    if(type & OBJECT_TERMINAL)  return "Terminal";
+    if(type & OBJECT_DAC)       return "DAC";
+    if(type & OBJECT_ADC)       return "ADC";
+    if(type & OBJECT_HARDWARE)  return "Hardware";
+    if(type & OBJECT_DRIVER)   return "Driver";
+    if(type & OBJECT_PLUGIN)    return "Plugin";
+    if(type & OBJECT)           return "Object";
+    return NULL;
+}
+
+/* -- Meta Interface -- */
+
+bool metacall(Object* object,const char* method, const Variant* args) {
+    if(!object || !method) return false;
+    
+}
+
+void meta_info(Object* object,Terminal *term){
+    if(!object) return;
+    
+    (term) ? call(Terminal,term,writef,"Module:    %#x\r\n", object)                : printf("Module:    %#x\r\n", object);
+    (term) ? call(Terminal,term,writef,"\t name:   %s\r\n",  object->_meta->_name)  : printf("\t name:   %s\r\n",  object->_meta->_name);
+    (term) ? call(Terminal,term,writef,"\t type:   %d\r\n",  object->_meta->_type)  : printf("\t type:   %d\r\n",  object->_meta->_type);
+    (term) ? call(Terminal,term,writef,"\t funcs:  %#x\r\n", object->_meta->_funcs) : printf("\t funcs:  %#x\r\n", object->_meta->_funcs);
+    (term) ? call(Terminal,term,writef,"\t mfuncs: %#x\r\n", object->_meta->_meta)  : printf("\t mfuncs: %#x\r\n", object->_meta->_meta);
+    (term) ? call(Terminal,term,writef,"\t size:   %dB\r\n", object->_meta->_size)  : printf("\t size:   %dB\r\n", object->_meta->_size);
+    (term) ? call(Terminal,term,writef,"\t fsize:  %dB\r\n", object->_meta->_fsize) : printf("\t fsize:  %dB\r\n", object->_meta->_fsize);
+    (term) ? call(Terminal,term,writef,"\t mfsize: %dB\r\n", object->_meta->_msize) : printf("\t mfsize: %dB\r\n", object->_meta->_msize);
+    
+    (term) ? call(Terminal,term,writef,"Meta Functions: %d\r\n", object->_meta->_msize / sizeof(ObjectMetaFunc)) 
+        : printf("Meta Functions: %d\r\n", object->_meta->_msize / sizeof(ObjectMetaFunc));
+    
+    for(const ObjectMetaFunc *i = static_cast(ObjectMetaFunc*,object->_meta->_meta);
+        i < static_cast(ObjectMetaFunc*,object->_meta->_meta)+(object->_meta->_msize / sizeof(ObjectMetaFunc)); ++i){
+        (term) ? call(Terminal,term,writef,"\tfunction: %s %s ",VariantTypeName[i->_ret],i->_name) : printf("\tfunction: %s %s ",VariantTypeName[i->_ret],i->_name);
+        if(i->_arguments && *i->_arguments){
+            char *sptr = 0;
+            (term) ? call(Terminal,term,write,"(",strlen("(")) : printf("(");
+            for(void** args = (void**)i->_arguments; *args != 0; ++args){
+                (term) ? call(Terminal,term,writef,"%s",VariantTypeName[static_cast(long int,*args)]) : printf("%s",VariantTypeName[static_cast(long int,*args)]);
+                if(*(args+1) != 0) (term) ? call(Terminal,term,write,",",strlen(",")) : printf(",");
+            }
+            if(i->_type == FUNC_VARIADIC)
+                (term) ? call(Terminal,term,write,",...",strlen(",...")) : printf(",...");
+            
+            (term) ? call(Terminal,term,write,")\r\n",strlen(")\r\n")) : printf(")\r\n");
+        } else (term) ? call(Terminal,term,writef,"(void)\r\n") : printf("(void)\r\n");
+    }
+}
+
+ObjectMetaFunc* metafunc_info(Object* object,const char* name){
+    if(!object || !name) return NULL;
+    for(ObjectMetaFunc *i = static_cast(ObjectMetaFunc*,object->_meta->_meta);
+        i < static_cast(ObjectMetaFunc*,object->_meta->_meta)+(object->_meta->_msize / sizeof(ObjectMetaFunc)); ++i){
+        if(strcmp(i->_name,name) == 0) return i;
+    }
+    
+    return NULL;
+}
+
+ObjectMetaFunc* metafunc_find(Object* object,const char* name,const void** signature){
+    if(!object || !name) return NULL;
+    for(ObjectMetaFunc *i = static_cast(ObjectMetaFunc*,object->_meta->_meta);
+        i < static_cast(ObjectMetaFunc*,object->_meta->_meta)+(object->_meta->_msize / sizeof(ObjectMetaFunc)); ++i){
+        if(!i->_name) continue;
+        if(strcmp(i->_name,name) == 0){
+            if((!i->_arguments && !signature) || (!*i->_arguments && !signature)) return i;
+            if(i->_arguments && !signature) continue;
+            const void** arg = i->_arguments,**sig = signature;
+            for(arg = i->_arguments,sig = signature; *arg == *sig && *arg && *sig;++sig,++arg);
+            if(!*arg && !*sig) return i;
+        }
+    }
+    
+    return NULL;
+}

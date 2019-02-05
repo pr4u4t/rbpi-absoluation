@@ -1,0 +1,281 @@
+Nieużywane symbole terminalne w gramatyce
+
+   T_EOF
+
+
+Gramatyka
+
+    0 $accept: program $end
+
+    1 program: program line
+    2        | line
+
+    3 line: module command arguments T_EOL
+    4     | module command T_EOL
+    5     | command arguments T_EOL
+    6     | command T_EOL
+    7     | T_EOL
+
+    8 module: T_IDENTIFIER
+
+    9 command: T_STRING
+
+   10 arguments: arguments argument
+   11          | argument
+
+   12 argument: T_STRING
+   13         | T_INTEGER
+   14         | T_FLOAT
+   15         | T_IDENTIFIER
+   16         | T_POINTER
+
+
+Symbole terminalne i reguły, w których występują
+
+$end (0) 0
+error (256)
+T_EOL (258) 3 4 5 6 7
+T_EOF (259)
+T_STRING <stringValue> (260) 9 12
+T_INTEGER <integerValue> (261) 13
+T_FLOAT <floatValue> (262) 14
+T_IDENTIFIER <identValue> (263) 8 15
+T_POINTER <pointerValue> (264) 16
+
+
+Symbole nieterminalne i reguły, w których występują
+
+$accept (10)
+    po lewej: 0
+program (11)
+    po lewej: 1 2, po prawej: 0 1
+line <com> (12)
+    po lewej: 3 4 5 6 7, po prawej: 1 2
+module <stringValue> (13)
+    po lewej: 8, po prawej: 3 4
+command <stringValue> (14)
+    po lewej: 9, po prawej: 3 4 5 6
+arguments <args> (15)
+    po lewej: 10 11, po prawej: 3 5 10
+argument <arg> (16)
+    po lewej: 12 13 14 15 16, po prawej: 10 11
+
+
+Stan 0
+
+    0 $accept: . program $end
+
+    T_EOL         przesunięcie, i przejście do stanu 1
+    T_STRING      przesunięcie, i przejście do stanu 2
+    T_IDENTIFIER  przesunięcie, i przejście do stanu 3
+
+    program  przejście do stanu 4
+    line     przejście do stanu 5
+    module   przejście do stanu 6
+    command  przejście do stanu 7
+
+
+Stan 1
+
+    7 line: T_EOL .
+
+    $domyślnie  redukcja przy użyciu reguły 7 (line)
+
+
+Stan 2
+
+    9 command: T_STRING .
+
+    $domyślnie  redukcja przy użyciu reguły 9 (command)
+
+
+Stan 3
+
+    8 module: T_IDENTIFIER .
+
+    $domyślnie  redukcja przy użyciu reguły 8 (module)
+
+
+Stan 4
+
+    0 $accept: program . $end
+    1 program: program . line
+
+    $end          przesunięcie, i przejście do stanu 8
+    T_EOL         przesunięcie, i przejście do stanu 1
+    T_STRING      przesunięcie, i przejście do stanu 2
+    T_IDENTIFIER  przesunięcie, i przejście do stanu 3
+
+    line     przejście do stanu 9
+    module   przejście do stanu 6
+    command  przejście do stanu 7
+
+
+Stan 5
+
+    2 program: line .
+
+    $domyślnie  redukcja przy użyciu reguły 2 (program)
+
+
+Stan 6
+
+    3 line: module . command arguments T_EOL
+    4     | module . command T_EOL
+
+    T_STRING  przesunięcie, i przejście do stanu 2
+
+    command  przejście do stanu 10
+
+
+Stan 7
+
+    5 line: command . arguments T_EOL
+    6     | command . T_EOL
+
+    T_EOL         przesunięcie, i przejście do stanu 11
+    T_STRING      przesunięcie, i przejście do stanu 12
+    T_INTEGER     przesunięcie, i przejście do stanu 13
+    T_FLOAT       przesunięcie, i przejście do stanu 14
+    T_IDENTIFIER  przesunięcie, i przejście do stanu 15
+    T_POINTER     przesunięcie, i przejście do stanu 16
+
+    arguments  przejście do stanu 17
+    argument   przejście do stanu 18
+
+
+Stan 8
+
+    0 $accept: program $end .
+
+    $domyślnie  akceptowanie
+
+
+Stan 9
+
+    1 program: program line .
+
+    $domyślnie  redukcja przy użyciu reguły 1 (program)
+
+
+Stan 10
+
+    3 line: module command . arguments T_EOL
+    4     | module command . T_EOL
+
+    T_EOL         przesunięcie, i przejście do stanu 19
+    T_STRING      przesunięcie, i przejście do stanu 12
+    T_INTEGER     przesunięcie, i przejście do stanu 13
+    T_FLOAT       przesunięcie, i przejście do stanu 14
+    T_IDENTIFIER  przesunięcie, i przejście do stanu 15
+    T_POINTER     przesunięcie, i przejście do stanu 16
+
+    arguments  przejście do stanu 20
+    argument   przejście do stanu 18
+
+
+Stan 11
+
+    6 line: command T_EOL .
+
+    $domyślnie  redukcja przy użyciu reguły 6 (line)
+
+
+Stan 12
+
+   12 argument: T_STRING .
+
+    $domyślnie  redukcja przy użyciu reguły 12 (argument)
+
+
+Stan 13
+
+   13 argument: T_INTEGER .
+
+    $domyślnie  redukcja przy użyciu reguły 13 (argument)
+
+
+Stan 14
+
+   14 argument: T_FLOAT .
+
+    $domyślnie  redukcja przy użyciu reguły 14 (argument)
+
+
+Stan 15
+
+   15 argument: T_IDENTIFIER .
+
+    $domyślnie  redukcja przy użyciu reguły 15 (argument)
+
+
+Stan 16
+
+   16 argument: T_POINTER .
+
+    $domyślnie  redukcja przy użyciu reguły 16 (argument)
+
+
+Stan 17
+
+    5 line: command arguments . T_EOL
+   10 arguments: arguments . argument
+
+    T_EOL         przesunięcie, i przejście do stanu 21
+    T_STRING      przesunięcie, i przejście do stanu 12
+    T_INTEGER     przesunięcie, i przejście do stanu 13
+    T_FLOAT       przesunięcie, i przejście do stanu 14
+    T_IDENTIFIER  przesunięcie, i przejście do stanu 15
+    T_POINTER     przesunięcie, i przejście do stanu 16
+
+    argument  przejście do stanu 22
+
+
+Stan 18
+
+   11 arguments: argument .
+
+    $domyślnie  redukcja przy użyciu reguły 11 (arguments)
+
+
+Stan 19
+
+    4 line: module command T_EOL .
+
+    $domyślnie  redukcja przy użyciu reguły 4 (line)
+
+
+Stan 20
+
+    3 line: module command arguments . T_EOL
+   10 arguments: arguments . argument
+
+    T_EOL         przesunięcie, i przejście do stanu 23
+    T_STRING      przesunięcie, i przejście do stanu 12
+    T_INTEGER     przesunięcie, i przejście do stanu 13
+    T_FLOAT       przesunięcie, i przejście do stanu 14
+    T_IDENTIFIER  przesunięcie, i przejście do stanu 15
+    T_POINTER     przesunięcie, i przejście do stanu 16
+
+    argument  przejście do stanu 22
+
+
+Stan 21
+
+    5 line: command arguments T_EOL .
+
+    $domyślnie  redukcja przy użyciu reguły 5 (line)
+
+
+Stan 22
+
+   10 arguments: arguments argument .
+
+    $domyślnie  redukcja przy użyciu reguły 10 (arguments)
+
+
+Stan 23
+
+    3 line: module command arguments T_EOL .
+
+    $domyślnie  redukcja przy użyciu reguły 3 (line)
