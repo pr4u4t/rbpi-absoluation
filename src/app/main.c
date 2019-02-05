@@ -20,7 +20,7 @@ static AppArguments getArguments(int argc,char** argv);
 static void sig_sigsegv(int nSignum, siginfo_t* si, void* vcontext);
 #endif
 
-#include <collections.h>
+//#include <collections.h>
 
 int main(int argc, char **argv)
 {
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     App* app = 0;
     int ret = 0;
     char* msg = 0;
-    
+   /* 
     //ITERATORS
     printf("Array testing<<\r\n");
     printf("\tcreate:\r\n");
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
     printf(">>\r\n");
     
     return 0;
-    
+  */  
     appArgs = getArguments(argc,argv);
 
 #ifdef _GNU_SOURCE
