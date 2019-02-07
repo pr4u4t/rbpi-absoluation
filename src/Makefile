@@ -33,8 +33,11 @@ export OSFLAG
 
 .PHONY: $(SUBDIRS)
 
-all: $(SUBDIRS)
+all: pluginsdir $(SUBDIRS)
 clean: $(SUBDIRS)
+
+pluginsdir: 
+	mkdir -p ../build/plugins
 
 $(SUBDIRS):
 	make -C $@ $(MAKECMDGOALS) 
