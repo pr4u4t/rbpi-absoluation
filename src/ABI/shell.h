@@ -55,16 +55,17 @@
 OBJECT(Shell,Object,
         METHODS
         (
-            METHOD(void,        set,         const char*,    const char*)
-            METHOD(const char*, get,         const char*)
-            METHOD(const char*, nameAt,      size_t)
-            METHOD(size_t,      size,        void)
-            METHOD(void,        unset,       const char*)
-            METHOD(bool,        open,        Terminal*)
-            METHOD(void,        close)
-            METHOD(int,         exec,        int argc,       ...)
+            METHOD(void,        set,         const char*,    const char*),
+            METHOD(const char*, get,         const char*),
+            METHOD(const char*, nameAt,      size_t),
+            METHOD(size_t,      size,        void),
+            METHOD(void,        unset,       const char*),
+            METHOD(bool,        open,        Terminal*),
+            METHOD(void,        close),
+            METHOD(int,         exec,        int argc,       ...),
             METHOD(void,        setTerminal, Terminal*)
-            
+        )
+)
 OBJECT_EXPORT(Shell)
 
 #endif

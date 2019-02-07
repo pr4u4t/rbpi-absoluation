@@ -40,7 +40,7 @@ typedef enum _ADS1256Channels   ADS1256Channels;
 typedef enum _ADS1256Timings    ADS1256Timings;
 
 typedef struct _ADS1256Data         ADS1256Data; 
-typedef struct _ADS1256Funcs        ADS1256Funcs;
+/*typedef struct _ADS1256Funcs        ADS1256Funcs;*/
 typedef struct _ADS1256MetaFuncs    ADS1256MetaFuncs;
 typedef struct _ADS1256             ADS1256;
 
@@ -146,7 +146,7 @@ struct _ADS1256Data {
                                         */
 };
 
-struct _ADS1256Funcs {
+/*struct _ADS1256Funcs {
     ADCFuncs        _base;
     //protected
     ADS1256Value    (*value)            (ADS1256 *this, ADS1256Channel chan);
@@ -162,7 +162,7 @@ struct _ADS1256Funcs {
     void            (*setDiffChannel)   (ADS1256 *this, ADS1256Channel chan);
     void            (*waitDrdy)         (ADS1256 *this);
     ADS1256Value    (*readData)         (ADS1256 *this);
-};
+};*/
 
 struct _ADS1256MetaFuncs {
     ADCMetaFuncs _base;
@@ -173,6 +173,25 @@ struct _ADS1256 {
     ADS1256Data         _data;
 };
 
+OBJECT(ADS1256,Object
+        METHODS
+        (
+            METHOD(ADS1256Value,    value,          ADS1256Channel),
+            METHOD(void,            delayUS,        time_t),
+            METHOD(void,            send8Bit,       ADS1256RegValue),
+            METHOD(void,            cfgADC,         ADS1256Gain,        ADS1256DataRate),
+            METHOD(void,            delayData),
+            METHOD(ADS1256RegValue, recive8Bit),
+            METHOD(void,            writeReg,       ADS1256Register,    ADS1256RegValue),
+            METHOD(ADS1256RegValue, readReg,        ADS1256Register),
+            METHOD(void,            writeCmd,       ADS1256Command),
+            METHOD(void,            setChannel,     ADS1256Channel),
+            METHOD(void,            setDiffChannel, ADS1256Channel),
+            METHOD(void,            waitDrdy),
+            METHOD(ADS1256Value,    readData)
+        )
+)
+                
 OBJECT_EXPORT(ADS1256)
 
 #endif

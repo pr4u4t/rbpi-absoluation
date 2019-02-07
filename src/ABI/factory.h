@@ -55,19 +55,19 @@ enum _FactoryEachMode {
 OBJECT(Factory,Object,
        METHODS
        (
-           METHOD(bool,          open,           const char*)
-           METHOD(bool,          load,           const char*)
-           METHOD(bool,          unload          const char*)
-           METHOD(Object*,       instance        const char*)
-           METHOD(Object*,       instanceById    const)
-           METHOD(Object*,       newInstance     const char*)
-           METHOD(void,          close)
-           METHOD(bool,          loadByPath,     const char*     const char*)
-           METHOD(Object*,       hasInstance     const char*)
-           METHOD(ObjectLoader*, hasLoader       const char*)
+           METHOD(bool,          open,           const char*),
+           METHOD(bool,          load,           const char*),
+           METHOD(bool,          unload          const char*),
+           METHOD(Object*,       instance        const char*),
+           METHOD(Object*,       instanceById    const),
+           METHOD(Object*,       newInstance     const char*),
+           METHOD(void,          close),
+           METHOD(bool,          loadByPath,     const char*     const char*),
+           METHOD(Object*,       hasInstance     const char*),
+           METHOD(ObjectLoader*, hasLoader       const char*),
            METHOD(int            foreach         Factory_each,   void*,         const FactoryEachMode)
         )
-
+)
 OBJECT_EXPORT(Factory)
 
 #endif

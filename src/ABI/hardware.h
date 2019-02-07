@@ -26,9 +26,10 @@
 OBJECT(Hardware,Object,
        METHODS
        (
-           METHOD(void, isr)
+           METHOD(void, isr),
            METHOD(int,  chipID)
         )
+)
 
 OBJECT_EXPORT(Hardware)
 

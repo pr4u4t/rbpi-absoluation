@@ -34,13 +34,14 @@
 OBJECT(Adc,Object,
        METHODS
        (
-           METHOD(bool,     open,       int,    int,    int)
-           METHOD(void,     close)
-           METHOD(int,      mode)
-           METHOD(void,     setMode,    int)
-           METHOD(float,    voltage,    int)
+           METHOD(bool,     open,       int,    int,    int),
+           METHOD(void,     close),
+           METHOD(int,      mode),
+           METHOD(void,     setMode,    int),
+           METHOD(float,    voltage,    int),
            METHOD(uint8_t,  channels)
         )
+)
 
 OBJECT_EXPORT(ADC)
 
