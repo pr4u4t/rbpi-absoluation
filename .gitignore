@@ -37,3 +37,8 @@
 ehthumbs.db
 Thumbs.db
 *.kate-swp
+aclocal.m4
+compile
+install-sh
+missing
+autom4te.cache
