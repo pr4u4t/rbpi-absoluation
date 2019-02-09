@@ -42,3 +42,9 @@ compile
 install-sh
 missing
 autom4te.cache
+Makefile.in
+config.status
+configure
+configure.scan
+configure.ac
+Makefile

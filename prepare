@@ -1,5 +1,7 @@
 #!/bin/bash
 
+autoscan 
+mv configure.scan configure.ac
 aclocal
 automake --add-missing --foreign
 autoreconf
