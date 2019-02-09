@@ -37,7 +37,7 @@ DIARES=$(patsubst $(DIADIR)/%.dia,$(BDIR)/%.png,$(DIAS))
 PLOTRES=$(patsubst $(GRAPHDIR)/%.plt,$(BDIR)/%.png,$(PLOTS))
 TEXRES=$(patsubst $(TEXDIR)/%.tex,$(BDIR)/%.pdf,$(RESULTTPLS))
 
-all: clean-log plots diagrams sheets tex ready
+all: clean-log plots diagrams sheets doxy tex ready
 
 #$(BDIR)/*.png
 
@@ -63,7 +63,10 @@ diagrams: $(DIARES)
 plots: $(PLOTRES)
 
 tex: $(TEXRES)
-	
+
+doxy: 
+	doxygen doxyfile.conf
+
 clean-log:
 	$(TRUNC) -s 0 $(LOG)
 
@@ -71,4 +74,4 @@ show-errors:
 	$(AWK) '/[Ll][Aa][Tt][Ee][Xx]/{f=1}f' $(LOG) | $(GREP) -nE "[Ee][Rr]{2}[oO][rR]"  || echo -e "\e[32mno errors found"
 
 clean:
-	$(REM) $(PLOTRES) $(TEXRES) $(DIARES) $(SHEETRES) $(MAINDOC) $(BDIR)/* *.log *.toc *.aux *.out
+	$(REM) $(PLOTRES) $(TEXRES) $(DIARES) $(SHEETRES) $(MAINDOC) $(BDIR)/* *.log *.toc *.aux *.out doxygen/*
