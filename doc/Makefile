@@ -37,9 +37,9 @@ DIARES=$(patsubst $(DIADIR)/%.dia,$(BDIR)/%.png,$(DIAS))
 PLOTRES=$(patsubst $(GRAPHDIR)/%.plt,$(BDIR)/%.png,$(PLOTS))
 TEXRES=$(patsubst $(TEXDIR)/%.tex,$(BDIR)/%.pdf,$(RESULTTPLS))
 
-all: clean-log plots diagrams sheets doxy tex ready
+all: clean-log plots diagrams sheets doxy apply tex ready
 
-#$(BDIR)/*.png
+
 
 $(TEXRES): $(BDIR)/%.pdf: $(TEXDIR)/%.tex $(TEXDIR)/*.tex  
 	TEXINPUTS=$$TEXINPUTS:$(TEXDIR)//:$(BDIR)//:./$(INFODIR)// $(TEXGEN) --build-dir=$(BDIR) $< -o $@ &>> $(LOG)
@@ -52,6 +52,9 @@ $(DIARES): $(BDIR)/%.png: $(DIADIR)/%.dia
 
 $(PLOTRES): $(BDIR)/%.png: $(GRAPHDIR)/%.plt $(GRAPHDIR)/%.dat
 	GNUPLOT_LIB=$(GRAPHDIR) $(PLOTGEN) -e 'set output "$@"' -c $< &>> $(LOG)	
+
+apply:
+	TEXINPUTS=$$TEXINPUTS:$(TEXDIR)//:$(BDIR)//:./$(INFODIR)// $(TEXGEN) --build-dir=$(BDIR) $(TEX)/application.tex -o application.pdf &>> $(LOG)
 
 ready: $(BDIR)/$(MAINDOC) 
 	$(CP) $(BDIR)/$(MAINDOC) $(MAINDOC)
