@@ -1,0 +1,251 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{polski}
+\usepackage[utf8]{inputenc}	
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage[margin=1in]{geometry}
+
+%\usepackage{booktabs}
+
+%variables
+\newcommand{\shopname}{SHOP NAME}
+\newcommand{\companyname}{COMPANY NAME}
+\newcommand{\regon}{REGON}
+\newcommand{\nip}{NIP}
+\newcommand{\httpaddr}{SITE ADDRESS}
+\newcommand{\address}{ADDRESS}
+\newcommand{\mail}{MAIL ADDRESS}
+\newcommand{\phone}{PHONE NUMBER}
+\newcommand{\currency}{CURRENCY}
+
+% use paragraph sign with numbering and break section title below
+\titleformat{\section}[display]
+	{\normalfont\Large\bfseries\filcenter}{\S\thesection}{1em}{}
+
+% display subsection numbering without newline
+\titleformat{\subsection}[runin]
+	{\fontsize{12}{15}\filcenter\sffamily}
+	{\thesubsection}{1em}{}
+
+% command to set text left and right margin
+\def\changehmargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangehmargin=\endlist 
+
+% pdf form input adjustment
+\newlength{\LabelWidth}%
+\setlength{\LabelWidth}{1.3in}%
+\newcommand*{\AdjustInputSize}[2][l]{\makebox[\LabelWidth][#1]{#2}}%
+\def\textfieldwidth{2.25in}%
+
+%define new column type
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+%title autor etc
+
+\title{OGÓLNE WARUNKI GWARANCJI} % The article title
+\author{}
+\date{} 
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+	\maketitle
+
+	\section{ZAKRES ZASTOSOWANIA}
+
+	\subsection{Ogólne Warunki Gwarancji (dalej OWG) stanowią integralną część Umów Sprzedaży oraz związanych z nimi umów o świadczenie
+usług zawieranych pomiędzy COMODO Group Spółka z ograniczoną odpowiedzialnością Spółka komandytowa a Kupującymi
+oferowanych przez nią produktów, o ile umowy te nie stanowią inaczej. Użyte w dalszej części niniejszych OWG określenia oznaczają:}
+
+\begin{itemize}
+
+\item \shopname \companyname \nip \regon
+
+\item „Kupujący” - kontrahenta dokonującego od \shopname zakupów produktów lub usług. Niniejsze OWG stosuje się tylko do
+kontrahentów (przedsiębiorców art. 43 1k.c.) nie będących konsumentami w rozumieniu art. 22 1Kodeksu Cywilnego.
+
+\item „Strony” - \shopname i Kupującego
+
+\item „OWG” - niniejsze Ogólne Warunki Gwarancji \companyname
+
+\item „Gwarancja Producenta” – warunki gwarancyjne oferowane niezależenie od niniejszych OWG bezpośrednio przez Producenta.
+
+\item „Produkt” - produkty, towary i usługi stanowiące przedmiot statutowej działalności gospodarczej \shopname i w powyższym zakresie
+objęte gwarancją na terenie Polski, w szczególności: meble, krzesła, 
+wykładziny, itp.
+
+\item „Produkty małogabarytowe” – Produkty o gabarytach nie przekraczających wymiarów: szerokość 80cm, głębokość 80cm, wysokość
+140cm, oraz wagi 50kg, których transport nadmiernie nie obciąża Kupującego, np. krzesło, kontener z szufladami, mała szafka,
+akcesoria biurowe, itp.
+
+\item „Produkty wielkogabarytowe” – Produkty o gabarytach przekraczających wymiary i wagę Produktów małogabarytowych lub
+Produkty niezależnie od ich wymiarów i wagi, które zostały przez \shopname zmontowane w zestaw, np.: biurko z pomocnikiem,
+zestaw połączonych ze sobą szaf, zabudowa wnęki, meble kuchenne, lada recepcyjna, itp.
+
+\item „Producent” – wytwórca produktów, towarów, sprzedawanych za pośrednictwem \shopname
+
+\item „Umowa Sprzedaży” – dokument na podstawie, którego \shopname realizował dostawę Produktów dla Kupującego.
+
+\item „Reklamacja” – pisemnie zgłoszona wada lub uszkodzenie Produktu.
+
+\item „Miejsce montażu” – siedziba Kupującego lub inne miejsce, które wyszczególnione było w Umowie Sprzedaży Produktu. 
+
+\end{itemize}
+
+\subsection{Zgodnie z niniejszym OWG \shopname udziela Kupującemu gwarancji na wszystkie sprzedawane przez siebie Produkty, zapewnia
+sprawne działanie oferowanych Produktów pod warunkiem korzystania z nich zgodnie z przeznaczeniem i warunkami eksploatacji
+określonymi w dokumentacji Producenta oraz niniejszej OWG.}
+
+\subsection{Zgodnie z art. 558 § 1 Kodeksu cywilnego rękojmia za Produkt jest wyłączona.}
+
+\section{WARUNKI EKSPLOATACJI} 
+
+\subsection{Produkty powinny być użytkowane w pomieszczeniach suchych i przewiewnych, o stałej temperaturze i wilgotności.}
+
+\subsection{Produkty należy chronić przed bezpośrednim działaniem promieni słonecznych
+Produkty skórzane nie powinny stać blisko grzejnika lub innych źródeł ciepła. Minimalna odległość od źródła ciepła powinna wynosić 30 cm.}
+
+\subsection{Konserwacji skóry należy dokonywać specjalnymi środkami pielęgnacyjnymi, które tworzą powłokę ochronną, odporną na wodę i substancje oleiste.}
+
+\subsection{Konserwacji mebli wykonanych w okleinach sztucznych należy dokonywać poprzez czyszczenie miękką ściereczką lub gąbką przy użyciu preparatów myjących i konserwujących powierzchnie drewnopochodne, lakierowane i laminowane (np. płyn do mycia szyb bez amoniaku).}
+
+\subsection{Meble w okleinach naturalnych należy czyścić bardzo delikatnie, miękką ściereczką nasączoną (nigdy w formie rozlewania jej na
+powierzchni mebla) 2-procentowym roztworem alkoholu (np. płyn do mycia szyb bez amoniaku, roztwór mydła w proporcji 250 ml
+wiórków mydlanych na 1 litr ciepłej wody oraz mleczka do konserwacji forniru, z wyłączeniem tłustych środków zapobiegających
+osiadaniu kurzu np. Pronto przeciw kurzowi), zgodnie z rysunkiem słojów.
+Światło ma wpływ na fornir okleiny naturalnej. Przez pierwsze 6-8 tygodni, gdy mebel początkowo pochłania światło z otoczenia, nie
+należy stawiać na powierzchniach żadnych przedmiotów ani ozdób. Nierównomierne pochłanianie światła może doprowadzić do
+powstawania trwałych odbarwień, np. w kształcie okręgów.}
+
+\subsection{Podczas eksploatacji mebli w okleinach naturalnych zaleca się stosowanie podkładek na blatach, w szczególności pod laptopa,
+klawiaturę, mysz komputerową oraz w miejscach szczególnie narażonych na uszkodzenia mechaniczne.}
+
+\subsection{Przemieszczanie mebli może być dokonywane jedynie poprzez ich przenoszenie (UWAGA: mebli nie wolno przesuwać po podłodze).}
+
+\subsection{Zestawy szaf i biurek połączone ze sobą konstrukcyjnie przed przemieszczeniem należy zdemontować. Wskazane jest, aby w takim
+przypadku demontażu dokonał serwis \shopname.}
+
+\subsection{Kupujący dokonuje czyszczenia i konserwacji produktów we własnym zakresie i na własny koszt.}
+
+\section{ZAKRES GWARANCJI}
+
+\subsection{\shopname udziela Kupującemu gwarancji na wszystkie sprzedawane przez siebie Produkty, zapewnia sprawne działanie oferowanych
+produktów pod warunkiem korzystania z nich zgodnie z przeznaczeniem i warunkami eksploatacji określonymi w dokumentacji.}
+
+\subsection{W okresie trwania gwarancji \shopname zobowiązany jest bezpłatnie dostarczyć części zamienne lub naprawić wadliwe Produkty.}
+
+\subsection{\shopname odpowiada przed Kupującym wyłącznie za wady fizyczne powstałe z przyczyn tkwiących w sprzedanym Produkcie.Gwarancja nie są objęte wady powstałe z innych przyczyn, a szczególnie w wyniku:}
+
+\begin{itemize}
+
+\item uszkodzeń mechanicznych i wywołanych nimi wad
+uszkodzeń powstałych podczas transportu i przeładunku (nie dotyczy przewozu wykonanego przez \shopname)
+\item uszkodzeń wynikających z eksploatacji Produktów w warunkach, które nie odpowiadają normalnym warunkom eksploatacyjnym oraz
+wynikających z nieprawidłowej konserwacji
+\item samowolnych przeróbek lub zmian konstrukcyjnych
+nieprawidłowego montażu, konserwacji, magazynowania Produktu przez Kupującego
+\item uszkodzeń wynikłych ze zdarzeń losowych, czynników noszących znamiona siły wyższej (pożar, powódź, wyładowania atmosferyczne
+itp.)
+\item wykonywania samodzielnych napraw
+
+
+\end{itemize}
+
+\subsection{Gwarancja nie obejmuje części podlegających normalnemu zużyciu Produktu wynikających z jego poprawnej eksploatacji}
+
+\subsection{Gwarancją nie są objęte zmiany spowodowane działaniem promieni słonecznych oraz naturalne cechy surowca, takie jak: różnice w
+odcieniach i usłojeniu mebli fornirowanych, różnice w fakturze i odcieniach oraz blizny i ślady ukłuć owadów w Produktach pokrytych skórą.}
+
+\subsection{Gwarancja nie obejmuje Produktu, którego na podstawie przedłożonych dokumentów i cech znamionowych nie można zidentyfikować jako Produktu zakupionego u \shopname.}
+
+\section{OKRES GWARANCJI}
+
+\subsection{Okres gwarancji na Produkty oferowane przez \shopname liczony jest od daty sprzedaży i wynosi standardowo 24 miesiące.}
+\subsection{Strony w Umowie Sprzedaży mogą ustalić inne okresy gwarancji.}
+
+\subsection{\shopname udziela Klientowi gwarancji na okres podany powyżej na podstawie faktury VAT lub Umowy Sprzedaży Produktu. Na życzenie \shopname wyda Klientowi Kartę gwarancyjną.}
+
+\subsection{Jeżeli Producent oferuje dłuższy okres gwarancyjny Kupujący ma prawo, wedle własnego uznania skorzystać z niniejszych OWG lub
+Gwarancji Producenta z zastrzeżeniem ust. 5.13 i 5.14}
+
+\section{ZGŁOSZENIE I PROCEDURA GWARANCYJNA}
+
+\subsection{Podstawą przyjęcia reklamacji do rozpatrzenia jest spełnienie łącznie następujących warunków:}
+
+\begin{itemize}
+
+\item zgłoszenia Reklamacji przez Kupującego w formie pisemnej i przesłania listem poleconym lub na adres e-mail
+\mail, ewentualnie za pośrednictwem faxu (tel. \phone), na odpowiednim Formularzu reklamacyjnym,
+zawierającym: nazwę towaru, numer katalogowy, datę zakupu, szczegółowy opis uszkodzenia wraz z dodatkowymi informacjami
+dotyczącymi powstania wad Produktu oraz załączonymi zdjęciami wadliwego Produktu. Wzór formularza dostępny jest na stronie
+internetowej \httpaddr lub w siedzibie \shopname.
+
+\item okazania faktury zakupu lub Umowy Sprzedaży reklamowanego produktu.
+
+\item dostarczenia osobistego lub za pośrednictwem firmy kurierskiej reklamowanego Produktu do siedziby \shopname (dotyczy Produktów
+małogabarytowych) lub umożliwienie, na każdą prośbę \shopname, dostępu do Produktów wielkogabarytowych, w miejscu ich
+montażu.
+
+\end{itemize}
+
+\subsection{Wady lub uszkodzenia Produktu ujawnione w okresie gwarancji powinny zostać zgłoszone \shopname niezwłocznie, nie później
+jednak niż 7 dni od daty ich ujawnienia.}
+
+\subsection{Produkt, w którym stwierdzono wadę powinien zostać niezwłocznie wyłączony z użytkowania pod rygorem utraty gwarancji.}
+
+\subsection{\shopname w ciągu 14 dni roboczych, od momentu zgłoszenia Reklamacji, przeprowadza badania wyrobu i w przypadku stwierdzenia, że
+wada nastąpiła z przyczyn tkwiących w sprzedanym Produkcie - potwierdza przyjęcie zgłoszenia reklamacyjnego oraz określa sposób i
+zakres naprawy lub wymiany wadliwego towaru.}
+
+\subsection{Jeżeli \shopname nie jest w stanie stwierdzić, na podstawie złożonej Reklamacji, czy wada nastąpiła z przyczyn tkwiących w sprzedanym
+Produkcie, odsyła reklamowany Produkt do siedziby Producenta. W przypadku odrzucenia Reklamacji przez Producenta, Produkt
+odsyłany jest do miejsca montażu na koszt i ryzyko Kupującego. \shopname zastrzega sobie również prawo do obciążenia Kupującego
+kosztami manipulacyjnymi związanymi z przeprowadzeniem ekspertyzy Produktu (gdyby była konieczna), jeśli reklamowany Produkt
+okaże się sprawny lub uszkodzenie nie było objęte gwarancją.}
+
+\subsection{Wady produktu ujawnione w okresie gwarancji będą usuwane bezpłatnie w terminie nie dłuższym niż 14 dni roboczych od daty
+przyjęcia pisemnego zgłoszenia. W przypadku, gdy zachodzi konieczność dokonania skomplikowanej naprawy, a także gdy konieczne
+jest sprowadzenie części zamiennych czy podzespołów z zagranicy, \shopname zastrzega sobie możliwość przedłużenia terminu naprawy
+nie dłużej jednak niż o 21 dni roboczych, po uprzednim poinformowaniu Kupującego.}
+
+\subsection{Okres naprawy gwarancyjnej reklamowanego wyrobu przedłuża odpowiednio czas udzielonej gwarancji na dany Produkt.}
+
+\subsection{W przypadku gdy usunięcie wady nie jest możliwe lub wiązałoby się to z nadmiernymi kosztami, \shopname może wymienić wyrób na
+wolny od wad lub zwrócić uiszczoną zapłatę. W wypadku wymiany rzeczy na wolną od wad w ramach realizacji świadczeń
+gwarancyjnych o których mowa powyżej, termin gwarancji dla wymienionej rzeczy biegnie na nowo od chwili dostarczenia rzeczy
+wolnej od wad.}
+
+\subsection{Produkty małogabarytowe należy, po uprzednim ustaleniu z \shopname, odesłać na jego adres, przy czym koszty i ryzyko przesyłki
+ponosi Kupujący. Uznanie roszczeń gwarancyjnych Kupującego będzie równoznaczne z naprawą Produktu lub wymianą Produktu na
+wolny od wad i zwrotem kosztów przesyłki poniesionych przez Kupującego}
+
+\subsection{Produkty wielkogabarytowe, w zależności od rodzaju wady, mogą zostać naprawione przez \shopname na miejscu montażu lub, w
+przypadku braku takiej możliwości, wysłane na ryzyko i koszt \shopname do siedziby Producenta.}
+
+\subsection{Zarówno w przypadku naprawy dokonywanej przez \shopname w miejscu montażu, jak i konieczności dokonania demontażu przygotowania reklamowanego towaru do wysyłki do siedziby Producenta, Kupujący zobowiązany jest do zapewnienia swobodnego
+dostępu do Produktu, usunięcia z jego powierzchni lub wnętrza wszelkich rzeczy Kupującego np. sprzętu biurowego, dokumentów,
+akcesoriów biurowych itp. W innym przypadku serwisant ma prawo domówić działań serwisowych.}
+
+\subsection{Złożenie Reklamacji przez Kupującego nie zwalnia go z obowiązku zapłaty za reklamowy Produkt. \shopname zastrzega sobie prawo
+wstrzymania procedury gwarancyjnej w przypadku gdy Kupujący zalega z płatnościami za faktury przeterminowane dłużej niż 7 dni.}
+
+\subsection{Niniejsze OWG nie wyłączają uprawnień Kupującego do skorzystania z Gwarancji Producenta oferowanych bezpośrednio przez
+fabrykę wytwarzającą zakupiony produkt. W przypadku zgłoszenia reklamacji bezpośrednio do Producenta, Kupującego obowiązują
+wszelkie wymogi formalne, eksploatacyjne, okresy gwarancji, procedury reklamacyjne opisane na Kartach Gwarancyjnych
+Producenta, załączonych do poszczególnych Produktów lub dostępnych na stronach internetowych Producenta.}
+
+\subsection{W przypadku skorzystania przez Kupującego z Gwarancji Producenta gwarancja udzielana przez \shopname 
+przestaje obowiązywać.}
+
+\subsection{W sprawach nieuregulowanych niniejszym OWG mają zastosowanie postanowienia Kodeksu Cywilnego.}
+
+\end{document}

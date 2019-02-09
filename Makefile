@@ -1,4 +1,4 @@
-SUBDIRS := lib src
+SUBDIRS := lib src doc
 
 .PHONY: $(SUBDIRS)
 

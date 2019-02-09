@@ -1,0 +1,22 @@
+Skuteczne i bezawaryjne działanie sklepu internetowego zależy od odpowiedniego sprzętu. Podstawowymi środkami umożliwiającymi uruchomienie sklepu internetowego są oprogramowanie oraz sprzęt komputerowy i sieciowy. Urządzenie te umożliwią budowę spójnego systemu wymiany informacji i dokumentów. W skład systemu wchodzą:
+2 komputery klasy serwerowej
+2 komputery klasy dysku sieciowego
+Switch umożliwiający połączenie urządzeń w sieć
+Acces Point punkt dostępu dla klientów radiowych - WIFI 
+Urządzenie wielofunkcyjne (skaner,ksero,drukarka,fax)
+Telefon VOIP 
+Kasa fiskalna
+System zarządzania
+Sklep internetowy
+Zastosowanie 2 serwerów i 2 dysków sieciowych umożliwia osiągnięcie niezawodności platformy na poziomie 96% w okresie 3 lat. Sklep internetowy umożliwia klientom zapoznanie się z oferowanymi produktami. System zarządzania odpowiada za przechowywanie dokumentów, zleceń produkcji, dokumentów celnych oraz dowodów wysyłki. Rozdzielenie tych systemów zapewnia bezpieczeństwo danych pochodzących z obsługi sklepu. 
+Komputer składa się z następujących elementów:
+Procesor (CPU)
+Płyta główna (MOBO)
+Pamięć RAM (RAM)
+Dysk twardy (HDD)
+Zasilacz (PSU)
+Karta graficzna (GPU)
+Karta sieciowa (ETH)
+Obudowa
+
+

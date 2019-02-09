@@ -1,0 +1,96 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{polski}
+\usepackage[utf8]{inputenc}	
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage[margin=1in]{geometry}
+
+%\usepackage{booktabs}
+
+%variables
+\newcommand{\shopname}{SHOP NAME}
+\newcommand{\companyname}{COMPANY NAME}
+\newcommand{\regon}{REGON}
+\newcommand{\nip}{NIP}
+\newcommand{\httpaddr}{SITE ADDRESS}
+\newcommand{\address}{ADDRESS}
+\newcommand{\mail}{MAIL ADDRESS}
+\newcommand{\phone}{PHONE NUMBER}
+\newcommand{\currency}{CURRENCY}
+
+% use paragraph sign with numbering and break section title below
+\titleformat{\section}[display]
+	{\normalfont\Large\bfseries\filcenter}{\S\thesection}{1em}{}
+
+% display subsection numbering without newline
+\titleformat{\subsection}[runin]
+	{\fontsize{12}{15}\bfseries\filcenter\sffamily}
+	{\thesubsection}{1em}{}
+
+% command to set text left and right margin
+\def\changehmargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangehmargin=\endlist 
+
+% pdf form input adjustment
+\newlength{\LabelWidth}%
+\setlength{\LabelWidth}{1.3in}%
+\newcommand*{\AdjustInputSize}[2][l]{\makebox[\LabelWidth][#1]{#2}}%
+\def\textfieldwidth{2.25in}%
+
+%define new column type
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+%title autor etc
+
+\title{Regulamin sklepu internetowego \shopname} % The article title
+\author{}
+\date{} 
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+	\maketitle
+
+	\section{Postanowienia wstępne}
+		\input{regulamin_PL_postanowienia_wstepne.tex}
+
+	\section{Definicje}
+		\input{regulamin_PL_definicje.tex}
+	
+	\section{Kontakt}
+		\input{regulamin_PL_kontakt.tex}
+		
+	\section{Informacje wstępne}
+		\input{regulamin_PL_informacje_wstepne.tex}
+		
+	\section{Wykonanie umowy sprzedaży}
+		\input{regulamin_PL_wykonanie_umowy_sprzedazy.tex}
+		
+	\section{Prawo odstępienia od umowy}
+		\input{regulamin_PL_prawo_odstapienia_od_umowy.tex}
+			
+	\section{Reklamacja i gwarancja}
+		\input{regulamin_PL_reklamaja_i_gwarancja.tex}
+			
+	\section{Pozasądowe sposoby ropatrywania reklamacji i dochodzenia roszczeń}
+		\input{regulamin_PL_Pozasadowe_sposoby_ropatrywania_reklamacji_i_dochodzenia_roszczen.tex}
+			
+	\section{Dane osobowe}
+		\input{regulamin_PL_dane_osobowe.tex}
+			
+	\section{Postanowienia końcowe}
+		\input{regulamin_PL_postanowienia_koncowe.tex}
+		
+	\section{Wzór odstąpienia od umowy}
+		\input{regulamin_PL_wzor_odstapienia_od_umowy.tex}
+	
+\end{document}

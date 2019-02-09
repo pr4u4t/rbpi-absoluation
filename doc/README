@@ -1,0 +1,13 @@
+To build this documentation you need:
+	DIA 		- opensource tool for diagram generation to process *.dia files into *.png
+	LaTex		- latex distribution to process *.tex file into *.pdf
+	gnuplot		- opensource tools for plotting data to process *.plt and *.dat files into *.png
+	make		- make system
+	
+To build this this documentation all you need to do is enter directory and execute ``make``
+
+To add new DIA diagram just paste your diagram in *.dia format into documentation directory.
+To add new plot create new *.dat file containing plot data and *.plt file with same name as *.dat file containing plot settings.
+All *.tex files are UTF-8 encoded.
+
+In case of emergency mail me: pawel.ciejka@robco.pl

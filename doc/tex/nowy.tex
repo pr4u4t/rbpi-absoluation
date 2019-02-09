@@ -1,0 +1,155 @@
+\documentclass[
+12pt, % Main document font size
+a4paper
+%, % Paper type, use 'letterpaper' for US Letter paper
+%oneside, % One page layout (no page indentation)
+%twoside, % Two page layout (page indentation for binding and different headers)
+%headinclude,footinclude, % Extra spacing for the header and footer
+%BCOR5mm, % Binding correction
+]{report}
+
+\usepackage[font=small,labelfont=bf,justification=raggedright,format=hang,singlelinecheck=off,textfont=it]{caption}
+%\usepackage{subcaption}
+\usepackage{indentfirst}
+\usepackage{longtable}
+\usepackage{tabu}
+\usepackage{titlepic}
+\usepackage{geometry}
+\geometry{margin=1in,top=1.5in,bottom=1.5in}
+\usepackage{mathtools}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\pagestyle{headings}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{pdfpages}
+\usepackage{wallpaper}
+%\usepackage{cleveref}
+\usepackage{afterpage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{cleveref}
+
+\newcommand\blankpage{%
+    \null
+	\ClearWallPaper
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage
+	\ULCornerWallPaper{1}{head}}
+
+%\captionsetup{}
+
+%\usepackage{showframe}
+
+
+\newcounter{magicrownumbers}
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+
+%variables
+\newcommand{\shopname}{SHOP NAME}
+\newcommand{\companyname}{COMPANY NAME}
+\newcommand{\regon}{REGON}
+\newcommand{\nip}{NIP}
+\newcommand{\httpaddr}{SITE ADDRESS}
+\newcommand{\address}{ADDRESS}
+\newcommand{\mail}{MAIL ADDRESS}
+\newcommand{\phone}{PHONE NUMBER}
+\newcommand{\currency}{CURRENCY}
+
+\setlistdepth{9}
+\graphicspath{ {images/} }
+
+\title{Biznes plan sklep-meblowy.org}
+\author{Kamila Klonowska <kamila.klon@sklep-meblowy.org>}
+\titlepic{\includegraphics[width=128px]{logo.png}}
+
+%definitions
+\newif\ifpersonal
+\personaltrue % comment out to hide answers
+
+%styling
+\titlespacing*{\subparagraph}{1em}{0pt}{0pt}
+\titleformat{\subparagraph}[runin]
+{\normalfont\normalsize}{\thesubparagraph}{1em}{}
+
+\ULCornerWallPaper{1}{head}
+%\LLCornerWallPaper{1}{foot}
+
+\begin{document}			
+
+
+	%strona tytulowa
+	\input{strona_tytul.tex}
+
+	\afterpage{\blankpage}
+	
+	%spis tresci
+	\input{spis_tresci.tex}
+
+	%pojecia
+	\chapter*{Wstęp}
+		\addcontentsline{toc}{chapter}{Wstęp}
+		\input{pojecia.tex}
+						
+	\chapter{Opis przedsięwzięcia}
+		\input{opis_plan_przedsiewziecia_opis_planowanego_przedsiewziecia.tex}
+
+	\chapter{Analiza rynku, plan marketingowy}
+		\input{plan_market_charakterystyka_produktow_i_uslug.tex}
+					
+	\chapter{Analiza SWOT}
+		\input{analiza_swot.tex}
+		
+	\chapter{Plan techniczny}
+		\input{plan_inwest_uzasadnienie.tex}
+	
+	\chapter{Plan finansowy}
+		\section{Źródła finansowania}
+			\input{plan_finansowy_zrodla_finansowania.tex}
+		\section{Koszty miesięczne}
+			\input{plan_finansowy_koszty_miesieczne.tex}
+		\section{Planowane przychody}
+			\input{plan_finansowy_planowane_przychody.tex}
+		\section{Bilans}
+			\input{plan_finansowy_bilans.tex}
+
+\appendix
+
+	\chapter{Regulamin sklepu internetowego}
+		\section{Regulamin polski}
+			\includepdf[pages={1-},scale=0.85,pagecommand={\thispagestyle{headings}},clip,trim=0mm 25mm 0mm 25mm]{regulamin_PL.pdf}
+			
+		\section{Regulamin kanadyjski}
+			\includepdf[pages={1-},scale=0.85,pagecommand={\thispagestyle{headings}},clip,trim=0mm 25mm 0mm 25mm]{regulamin_EN.pdf}
+
+	\chapter{Polityka cookies}
+		\section{Polityka polska}
+			\includepdf[pages={1-},scale=0.85,pagecommand={\thispagestyle{headings}},clip,trim=0mm 25mm 0mm 25mm]{polityka_cookies_PL.pdf}
+
+			\section{Polityka kanadyjska}
+				\includepdf[pages={1-},scale=0.85,pagecommand={\thispagestyle{headings}},clip,trim=0mm 25mm 0mm 25mm]{polityka_cookies_EN.pdf}
+
+	\chapter{Karta gwarancyjna}
+		\section{Polska karta gwarancyjna}
+			\includepdf[pages={1-},scale=0.85,pagecommand={\thispagestyle{headings}},clip,trim=0mm 25mm 0mm 25mm]{karta_gwarancyjna_PL.pdf}
+	
+		\section{Kanadyjska karta gwarancyjna}
+			\includepdf[pages={1-},scale=0.85,pagecommand={\thispagestyle{headings}},clip,trim=0mm 25mm 0mm 25mm]{karta_gwarancyjna_EN.pdf}
+\end{document}

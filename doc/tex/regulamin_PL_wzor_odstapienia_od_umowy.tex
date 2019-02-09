@@ -1,0 +1,68 @@
+
+		\newpage
+		\newgeometry{margin=0.5in} 
+		
+		\begin{minipage}[t]{0.5\textwidth}
+			\begin{Form}
+				\begin{itemize}[label={},leftmargin=0pt,topsep=0pt]
+    				\item \TextField[borderwidth=0,bordercolor=,width=\textfieldwidth]{\AdjustInputSize[l]{Imię i nazwisko}}
+    				\item \TextField[multiline=true,borderwidth=0,bordercolor=,width=\textfieldwidth]{\AdjustInputSize[l]{Adres}}
+      				\item \TextField[borderwidth=0,bordercolor=,width=\textfieldwidth]{\AdjustInputSize[l]{Telefon}}
+    				\item \TextField[borderwidth=0,bordercolor=,width=\textfieldwidth]{\AdjustInputSize[l]{e-mail}}
+    			\end{itemize}
+   			\end{Form}
+		\end{minipage}
+		\begin{minipage}[t]{0.5\textwidth}
+			\begin{Form}
+ 				\TextField[borderwidth=0,bordercolor=]{Miejscowość}
+    			\TextField[borderwidth=0,bordercolor=]{Data}
+   			\end{Form}
+		\end{minipage}
+
+		\vspace*{5em}
+		
+		\begin{center}
+					\address
+		\end{center}
+		
+		\vspace*{5em}
+
+		\begin{center}
+			\textbf{Formularz odstąpienia od umowy}
+		\end{center}
+
+		\vspace*{5em}
+
+		\begin{Form}
+			Oświadczam, że zgodnie z art. 27 ustawy z dnia 30 maja 2014 r. o prawach konsumenta (Dz. U. 2014 r. poz. 827) odstępuję od umowy nr \TextField[borderwidth=0,bordercolor=]{} zawartej dnia \TextField[borderwidth=0,bordercolor=]{} dotyczącej zakupu towaru/usługi: %\TextField[borderwidth=0,bordercolor=]{} .
+		\end{Form}
+
+		\vspace*{3em}
+		
+		\begin{table}[htb]
+			\def\arraystretch{1.5}%
+			\begin{tabular}{|L{3cm}|C{3cm}|C{3cm}|C{3cm}|C{5cm}|}
+				\hline
+				Lp. 	& Nazwa towaru & Symbol & Ilość & Cena jednostkowa brutto \\ \hline
+   				1		&              &        &       &                         \\ \hline
+   				2		&              &        &       &                         \\ \hline
+   				3		&              &        &       &                         \\ \hline
+   				4		&              &        &       &                         \\ \hline
+   				5		&              &        &       &                         \\ \hline
+			\end{tabular}
+		\end{table}	
+		
+		\vspace*{5em}
+
+		\begin{flushright}
+			\begin{changehmargin}{13cm}{0pt}
+				\dotfill \\
+			
+				\begin{center}
+					Podpis klienta
+				\end{center}
+			\end{changehmargin}
+		\end{flushright}
+
+\end{document}
+ 
