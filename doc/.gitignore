@@ -1,4 +1,4 @@
-./build/*
-./fit.log
-./build.log
-./doxygen/*
+build/**
+fit.log
+build.log
+doxygen/**
