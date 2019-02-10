@@ -1,7 +1,22 @@
 #!/bin/bash
 
+mkdir -p m4
+
+echo -e "Preparing configure.ac"
 autoscan 
+
 mv configure.scan configure.ac
-aclocal
+sed -i "/AC_INIT/a AM_INIT_AUTOMAKE" configure.ac
+sed -i "/AM_INIT_AUTOMAKE/a LT_INIT" configure.ac
+sed -i "/LT_INIT/a AC_CONFIG_MACRO_DIRS([m4])" configure.ac
+sed -i "s/FULL\-PACKAGE\-NAME/Sensors/g" configure.ac
+sed -i "s/VERSION/0.0.1/g" configure.ac
+sed -i "s/BUG\-REPORT\-ADDRESS/pawel.ciejka@robco.pl/g" configure.ac
+sed -i "s/AC_PROG_RANLIB/AC_LIBTOOL_DLOPEN/g" configure.ac
+sed -i "/AC_LIBTOOL_DLOPEN/a AC_PROG_LIBTOOL " configure.ac
+
+echo -e "auto configuring"
+autoreconf -i
+
+echo -e "Makefile.am -> Makefile.in"
 automake --add-missing --foreign
-autoreconf

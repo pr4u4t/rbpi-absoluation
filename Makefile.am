@@ -1,12 +1,3 @@
-SUBDIRS := lib src doc
-
-.PHONY: $(SUBDIRS)
-
-all: $(SUBDIRS)
-clean: $(SUBDIRS)
-
-$(SUBDIRS):
-	make -C $@ $(MAKECMDGOALS)
-
-
-.PHONY: all $(SUBDIRS)
+AUTOMAKE_OPTIONS = foreign
+ACLOCAL_AMFLAGS = -I m4 
+SUBDIRS = src doc
