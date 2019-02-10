@@ -94,6 +94,9 @@
 #define _IFF_1(...) __VA_ARGS__
 #define _IFF_0(...) 
 
+#define CODE_OR_HEADER(condition) _CODE_OR_HEADER(BOOL(condition))
+
+
 /* -- utils -- */
 
 #define ENCAPSULE(...)				(__VA_ARGS__) 

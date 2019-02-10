@@ -5,6 +5,7 @@
 #include <stddef.h>
 #include <string.h>
 #include <inttypes.h>
+#include <stdbool.h>
 
 #include <primitives.h>
 
@@ -30,7 +31,9 @@ SMART_ENUM(VariantType,
 	NUM(uint32_t,	12),
 	NUM(uint64_t,	13),
     NUM(pointer,    14),
-    NUM(string,     15)
+    NUM(string,     15),
+    NUM(bool,       16),
+    NUM(size_t,     17)
 )
 
 union _VariantData {
@@ -48,6 +51,8 @@ union _VariantData {
     void*     p;
     char*     s;
     long      l;
+    bool      b;
+    size_t    st;
 };
 
 struct _Variant {

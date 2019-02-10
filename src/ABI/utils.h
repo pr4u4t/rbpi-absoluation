@@ -31,28 +31,6 @@ for(void** sptr = static_cast(void**,src),**dptr = static_cast(void**,dst); sptr
     if(*sptr != NULL && *dptr == NULL) *dptr = *sptr;\
 }
 
-#define SECOND(a, b, ...) b
-
-#define IS_PROBE(...) SECOND(__VA_ARGS__, 0)
-#define PROBE() ~, 1
-
-#define CAT(a,b) a ## b
-
-#define NOT(x) IS_PROBE(CAT(_NOT_, x))
-#define _NOT_0 PROBE()
-
-#define BOOL(x) NOT(NOT(x))
-
-#define IF_ELSE(condition) _IF_ELSE(BOOL(condition))
-#define _IF_ELSE(condition) CAT(_IF_, condition)
-
-#define _IF_1(...) __VA_ARGS__ _IF_1_ELSE
-#define _IF_0(...)             _IF_0_ELSE
-
-#define _IF_1_ELSE(...)
-#define _IF_0_ELSE(...) __VA_ARGS__
-
-
 char* strtoupper(char* buff);    
 
 unsigned long mix(unsigned long a, unsigned long b, unsigned long c);
