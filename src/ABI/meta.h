@@ -3,6 +3,9 @@
 
 #include <variant.h>
 
+typedef struct _MetaProperty MetaProp;
+typedef struct _MetaFunc MetaFunc;
+typedef struct _Meta Meta;
 typedef enum _ObjectType ObjectType;
 typedef enum _MetaFuncType MetaFuncType;
 
@@ -25,7 +28,7 @@ enum _ObjectType {
     OBJECT_SHELL    = (1 << 8)
 };
 
-typedef struct _Meta Meta;
+
 struct _Meta {
     struct _Funcs*          _funcs;
 	struct _MetaFuncs*	    _mfuncs;
@@ -35,9 +38,9 @@ struct _Meta {
 	size_t                  _msize;
 	size_t                  _mpsize;
 	const char*             _name;
+    int                     _type;
 };
 
-typedef struct _MetaFunc MetaFunc;
 struct _MetaFunc {
     const char*         _name;
     const void**        _arguments;
@@ -46,14 +49,12 @@ struct _MetaFunc {
     MetaFuncType        _type;
 };
 
-typedef struct _MetaProperty MetaProp;
 struct _MetaProperty {
 	const char*	_name;
 	int 		_type;
 	size_t 		_offset;
     size_t      _size;
 };
-
 
 #define META(Name,funcs,mtfuncs,mtprop)					                \
 const Meta Name ## Meta  =   {  					                    \
@@ -87,11 +88,11 @@ const Meta Name ## Meta  =   {  					                    \
 #define METHOD(ret,name,...)            	    (ret,name,__VA_ARGS__)
 #define METHODS(...) 				            (__VA_ARGS__)
 
-#define DATA(ret,name,...)                      (ret,name,__VA_ARGS__)
-#define DATAS(...)                              (__VA_ARGS__)
+//#define DATA(ret,name,...)                      (ret,name,__VA_ARGS__)
+//#define DATAS(...)                              (__VA_ARGS__)
 
-#define META_PROPERTY(type,name)		        (type,name)
-#define META_PROPERTIES(...)			        (__VA_ARGS__)
+#define PROPERTY(type,name)		                (type,name)
+#define PROPERTIES(...)			                (__VA_ARGS__)
 
 #define METHOD_FORMAT(Name,ret,name,...)	    ret (*name)(Name* __VA_OPT__(,) __VA_ARGS__);
 #define PRINT_METHOD(Name,...)			        IF_ELSE(PP_NARG(__VA_ARGS__))(METHOD_FORMAT ENCAPSULE(Name,DECAPSULE __VA_ARGS__))()
@@ -121,9 +122,9 @@ const Meta Name ## Meta  =   {  					                    \
 #define PRINT_MPT(Name,...)                   	IF_ELSE(PP_NARG(__VA_ARGS__))(FORMAT_MPT ENCAPSULE(Name,DECAPSULE __VA_ARGS__))()
 #define PRINT_MPTS(Name,...)                    MAP(PRINT_MPT,Name,__VA_ARGS__)
 
-#define FORMAT_DATA(Name,type,name,...)         type name;
-#define PRINT_DATA(Name,...)                   	IF_ELSE(PP_NARG(__VA_ARGS__))(FORMAT_DATA ENCAPSULE(Name,DECAPSULE __VA_ARGS__))()
-#define PRINT_DATAS(Name,...)                   MAP(PRINT_DATA,Name,__VA_ARGS__)
+//#define FORMAT_DATA(Name,type,name,...)         type name;
+//#define PRINT_DATA(Name,...)                   	IF_ELSE(PP_NARG(__VA_ARGS__))(FORMAT_DATA ENCAPSULE(Name,DECAPSULE __VA_ARGS__))()
+//#define PRINT_DATAS(Name,...)                   MAP(PRINT_DATA,Name,__VA_ARGS__)
 
 #define FORMAT_PROTO(Name,ret,name,...)		    static ret Name ## _ ## name (Name* __VA_OPT__(,) __VA_ARGS__);
 #define PRINT_PROTO(Name,...)			        IF_ELSE(PP_NARG(__VA_ARGS__))(FORMAT_PROTO ENCAPSULE(Name,DECAPSULE __VA_ARGS__))()
@@ -131,13 +132,13 @@ const Meta Name ## Meta  =   {  					                    \
 
 
 #ifndef OBJECT
-#define OBJECT(Name,base,methods,properts,datas)							\
+#define OBJECT(Name,base,methods,properts/*,datas*/)					    \
 	/* -- header section -- */									            \
-	typedef struct _ ## Name ## Data Name ## Data;							\
+	/*typedef struct _ ## Name ## Data Name ## Data;						\
 	struct _ ## Name ## Data {  									        \
-		/*IF_ELSE(base)(CAT(base,Data))()*/							        \
+		IF_ELSE(base)(CAT(base,Data))()							        \
 		EXPAND(PRINT_DATAS ENCAPSULE ( Name, DECAPSULE datas ))			    \
-	};												                        \
+	};		*/										                        \
 	typedef struct _ ## Name ## Properties Name ## Properties;				\
 	struct _ ## Name ## Properties {								        \
 		/*IF_ELSE(base)(CAT(base,Properties))()*/						    \
@@ -147,7 +148,7 @@ const Meta Name ## Meta  =   {  					                    \
 	struct _ ## Name {										                \
 		IF_ELSE(base)(base _base)(const Meta* _meta);						\
 		Name ## Properties	_properties;							        \
-		Name ## Data		_data;								            \
+		/*Name ## Data		_data;*/								        \
 	};												                        \
 	typedef struct _ ## Name ## Funcs 		Name ## Funcs;					\
 	struct _ ## Name ## Funcs { 									        \
@@ -166,20 +167,22 @@ const Meta Name ## Meta  =   {  					                    \
 	};												                        \
                                                                             \
 	/* -- code section --*/										            \
+    CODE_SECTION(_ ## Name ## _source_ )                                    \
+    (                                                                       \
+        EXPAND(PRINT_PROTOS ENCAPSULE ( Name, DECAPSULE methods ))			\
                                                                             \
-	EXPAND(PRINT_PROTOS ENCAPSULE ( Name, DECAPSULE methods ))				\
+        Name ## Funcs 		Name ## _vft 		= { 						\
+            EXPAND(PRINT_VFTS ENCAPSULE ( Name, DECAPSULE methods )) 		\
+        };												                    \
+        Name ## MetaFuncs 	Name ## Meta_vft	= { 						\
+            EXPAND(PRINT_MVFTS ENCAPSULE ( Name, DECAPSULE methods )) 		\
+        };												                    \
+        Name ## MetaProperties	Name ## Meta_pt		= {						\
+            EXPAND(PRINT_MPTS ENCAPSULE ( Name, DECAPSULE properts ))		\
+        };												                    \
                                                                             \
-	Name ## Funcs 		Name ## _vft 		= { 						    \
-		EXPAND(PRINT_VFTS ENCAPSULE ( Name, DECAPSULE methods )) 			\
-	};												                        \
-	Name ## MetaFuncs 	Name ## Meta_vft	= { 						    \
-		EXPAND(PRINT_MVFTS ENCAPSULE ( Name, DECAPSULE methods )) 			\
-	};												                        \
-	Name ## MetaProperties	Name ## Meta_pt		= {						    \
-		EXPAND(PRINT_MPTS ENCAPSULE ( Name, DECAPSULE properts ))			\
-	};												                        \
-                                                                            \
-	META(Name,CAT(Name,_vft),CAT(Name,Meta_vft),CAT(Name,Meta_pt))
+        META(Name,CAT(Name,_vft),CAT(Name,Meta_vft),CAT(Name,Meta_pt))      \
+    )     
 #endif
     
 #define callIterator(type,object,method,...) ((typeof(((cat(type,Funcs)*)0)->method)) *(**((void****)   &object) + offsetof(cat(type,Funcs),method) / sizeof(void*)))(static_cast(type*,&object) __VA_OPT__(,) __VA_ARGS__) 

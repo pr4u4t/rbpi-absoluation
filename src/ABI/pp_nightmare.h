@@ -94,7 +94,10 @@
 #define _IFF_1(...) __VA_ARGS__
 #define _IFF_0(...) 
 
-#define CODE_OR_HEADER(condition) _CODE_OR_HEADER(BOOL(condition))
+#define CODE_SECTION(...) _CODE_SECTION(PP_NARG(__VA_ARGS__))
+#define _CODE_SECTION(condition) CAT(_CODE_SECTION_,condition)
+#define _CODE_SECTION_1(...) 
+#define _CODE_SECTION_0(...) __VA_ARGS__
 
 
 /* -- utils -- */

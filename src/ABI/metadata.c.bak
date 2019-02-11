@@ -50,41 +50,7 @@ OBJECT_REGISTER(Object,OBJECT,Object_vft,ObjectMeta_vft,0,srand48(mix(clock(),ti
 
 /* -- Module -- */
 
-static const char* Object_name (Object* this){
-    return (this && this->_meta) ? this->_meta->_name : NULL;
-}
 
-static ObjectType Object_type (Object* this){
-    return (this && this->_meta) ? this->_meta->_type : 0;
-}
-
-static size_t Object_size (Object* this){
-    return (this && this->_meta) ? this->_meta->_size : 0;
-}
-
-static ObjectID Object_id (Object* this){
-    return (this && this->_meta) ? this->_data._id : 0;
-}
-
-static bool Object_open (Object* this){
-    return (this) ? this->_data._open = true : false;
-}
-
-static void Object_close (Object* this){
-    if(this) this->_data._open = false;
-}
-
-static bool Object_isOpen (Object* this){
-    return (this) ? this->_data._open : false;
-}
-
-static void Object_setFactory(Object* this, Factory* factory){
-    if(this) this->_data._factory = factory;
-}
-
-static Factory* Object_factory(Object* this){
-    return (this) ? this->_data._factory : NULL;
-}
 
 /* -- Module Loader -- */
  

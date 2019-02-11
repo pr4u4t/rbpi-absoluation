@@ -1,5 +1,5 @@
 #include <collections.h> 
-#include <metadata.h>
+#include <meta.h>
 
 /* -- Array -- */
 typedef IteratorPriv ArrayIterator;

@@ -13,8 +13,7 @@ OBJECT(ADC,Object,
         METHOD(float,    voltage,    int                 ),
         METHOD(uint8_t,  channels                        )
     ),
-    META_PROPERTIES(),
-    DATAS()
+    PROPERTIES()
 )
 
 //OBJECT_EXPORT(ADC)

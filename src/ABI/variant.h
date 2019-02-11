@@ -13,7 +13,7 @@ typedef void* pointer;
 typedef char* string;
 typedef union _VariantData VariantData;
 typedef struct _Variant Variant;
-
+typedef void (*funcptr) ();
 
 SMART_ENUM(VariantType,
 	NUM(void,		0),
@@ -33,7 +33,8 @@ SMART_ENUM(VariantType,
     NUM(pointer,    14),
     NUM(string,     15),
     NUM(bool,       16),
-    NUM(size_t,     17)
+    NUM(size_t,     17),
+    NUM(funcptr,    18)
 )
 
 union _VariantData {

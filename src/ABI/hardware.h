@@ -6,13 +6,11 @@
 OBJECT(Hardware,Object,
     METHODS
     (
-        METHOD(void, isr),
-        METHOD(int,  chipID)
+        METHOD(void, isr    ),
+        METHOD(int,  chipID )
     ),
-    META_PROPERTIES(),
-    DATAS()
+    PROPERTIES(
+    )
 )
-
-//OBJECT_EXPORT(Hardware)
 
 #endif
