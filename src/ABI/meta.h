@@ -84,21 +84,30 @@ const Meta Name ## Meta  =   {  					                    \
 	._size   = sizeof(ptype)                                 \
 }
 
+#define METHOD_SWITCH(condition) CAT(_METHOD_SWITCH_,condition)
+#define _METHOD_SWITCH_M(Name,ret,name,...) .name = &  Name ## _ ## name,
+#define _METHOD_SWITCH_V(Name,ret,name,...) .name = 0,
 
-#define METHOD(ret,name,...)            	    (ret,name,__VA_ARGS__)
+#define PROTO_SWITCH(condition) CAT(_PROTO_SWITCH_,condition)
+#define _PROTO_SWITCH_M(Name,ret,name,...) static ret Name ## _ ## name (Name* __VA_OPT__(,) __VA_ARGS__);
+#define _PROTO_SWITCH_V(Name,ret,name,...) 
+
+
+#define VMETHOD(ret,name,...)                   (V,ret,name,__VA_ARGS__)
+#define METHOD(ret,name,...)            	    (M,ret,name,__VA_ARGS__)
 #define METHODS(...) 				            (__VA_ARGS__)
 
-//#define DATA(ret,name,...)                      (ret,name,__VA_ARGS__)
-//#define DATAS(...)                              (__VA_ARGS__)
+//#define DATA(ret,name,...)                    (ret,name,__VA_ARGS__)
+//#define DATAS(...)                            (__VA_ARGS__)
 
 #define PROPERTY(type,name)		                (type,name)
 #define PROPERTIES(...)			                (__VA_ARGS__)
 
-#define METHOD_FORMAT(Name,ret,name,...)	    ret (*name)(Name* __VA_OPT__(,) __VA_ARGS__);
+#define METHOD_FORMAT(Name,Mtype,ret,name,...)	ret (*name)(Name* __VA_OPT__(,) __VA_ARGS__);
 #define PRINT_METHOD(Name,...)			        IF_ELSE(PP_NARG(__VA_ARGS__))(METHOD_FORMAT ENCAPSULE(Name,DECAPSULE __VA_ARGS__))()
 #define PRINT_METHODS(Name,...)			        MAP(PRINT_METHOD,Name,__VA_ARGS__)
 
-#define METAMETHOD_FORMAT(Name,ret,name,...) 	MetaFunc name;
+#define METAMETHOD_FORMAT(Name,Mtype,ret,name,...) 	MetaFunc name;
 #define PRINT_METAMETHOD(Name,...)           	IF_ELSE(PP_NARG(__VA_ARGS__))(METAMETHOD_FORMAT ENCAPSULE(Name,DECAPSULE __VA_ARGS__))()
 #define PRINT_METAMETHODS(Name,...)		        MAP(PRINT_METAMETHOD,Name,__VA_ARGS__)
 
@@ -110,11 +119,11 @@ const Meta Name ## Meta  =   {  					                    \
 #define PRINT_PROPERTY(Name,...)		        IF_ELSE(PP_NARG(__VA_ARGS__))(PROPERTY_FORMAT ENCAPSULE(Name,DECAPSULE __VA_ARGS__))()
 #define PRINT_PROPERTIES(Name,...)		        MAP(PRINT_PROPERTY,Name,__VA_ARGS__)
 
-#define FORMAT_VFT(Name,ret,name,...)		    .name = &  Name ## _ ## name,
+#define FORMAT_VFT(Name,Mtype,ret,name,...)		METHOD_SWITCH(Mtype)(Name,ret,name,__VA_ARGS__)
 #define PRINT_VFT(Name,...)			            IF_ELSE(PP_NARG(__VA_ARGS__))(FORMAT_VFT ENCAPSULE(Name,DECAPSULE __VA_ARGS__))()
 #define PRINT_VFTS(Name,...)			        MAP(PRINT_VFT,Name,__VA_ARGS__)
 
-#define FORMAT_MVFT(Name,ret,name,...)          .name = META_FUNC(Name,name,ret,0,__VA_ARGS__),
+#define FORMAT_MVFT(Name,Mtype,ret,name,...)    .name = META_FUNC(Name,name,ret,0,__VA_ARGS__),
 #define PRINT_MVFT(Name,...)                    IF_ELSE(PP_NARG(__VA_ARGS__))(FORMAT_MVFT ENCAPSULE(Name,DECAPSULE __VA_ARGS__))()
 #define PRINT_MVFTS(Name,...)                   MAP(PRINT_MVFT,Name,__VA_ARGS__)
 
@@ -126,7 +135,7 @@ const Meta Name ## Meta  =   {  					                    \
 //#define PRINT_DATA(Name,...)                   	IF_ELSE(PP_NARG(__VA_ARGS__))(FORMAT_DATA ENCAPSULE(Name,DECAPSULE __VA_ARGS__))()
 //#define PRINT_DATAS(Name,...)                   MAP(PRINT_DATA,Name,__VA_ARGS__)
 
-#define FORMAT_PROTO(Name,ret,name,...)		    static ret Name ## _ ## name (Name* __VA_OPT__(,) __VA_ARGS__);
+#define FORMAT_PROTO(Name,Mtype,ret,name,...)   PROTO_SWITCH(Mtype)(Name,ret,name,__VA_ARGS__) //static ret Name ## _ ## name (Name* __VA_OPT__(,) __VA_ARGS__);
 #define PRINT_PROTO(Name,...)			        IF_ELSE(PP_NARG(__VA_ARGS__))(FORMAT_PROTO ENCAPSULE(Name,DECAPSULE __VA_ARGS__))()
 #define PRINT_PROTOS(Name,...)			        MAP(PRINT_PROTO,Name,__VA_ARGS__)
 
@@ -136,7 +145,7 @@ const Meta Name ## Meta  =   {  					                    \
 	/* -- header section -- */									            \
 	/*typedef struct _ ## Name ## Data Name ## Data;						\
 	struct _ ## Name ## Data {  									        \
-		IF_ELSE(base)(CAT(base,Data))()							        \
+		IF_ELSE(base)(CAT(base,Data))()							            \
 		EXPAND(PRINT_DATAS ENCAPSULE ( Name, DECAPSULE datas ))			    \
 	};		*/										                        \
 	typedef struct _ ## Name ## Properties Name ## Properties;				\

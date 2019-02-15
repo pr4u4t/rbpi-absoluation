@@ -3,15 +3,15 @@
 
 #include <hardware.h>
     
-OBJECT(ADC,Object,
+OBJECT(ADC,Hardware,
     METHODS
     (
-        METHOD(bool,     open,       int,    int,    int ),
-        METHOD(void,     close                           ),
-        METHOD(int,      mode                            ),
-        METHOD(void,     setMode,    int                 ),
-        METHOD(float,    voltage,    int                 ),
-        METHOD(uint8_t,  channels                        )
+        VMETHOD(bool,     open,       int,    int,    int ),
+        VMETHOD(void,     close                           ),
+        VMETHOD(int,      mode                            ),
+        VMETHOD(void,     setMode,    int                 ),
+        VMETHOD(float,    voltage,    int                 ),
+        VMETHOD(uint8_t,  channels                        )
     ),
     PROPERTIES()
 )
