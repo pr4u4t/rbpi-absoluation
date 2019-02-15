@@ -469,7 +469,7 @@ uninstall-am:
 .PRECIOUS: Makefile
 
 
-all: clean-log plots diagrams sheets doxy apply tex ready
+all: clean-log pbuild plots diagrams sheets doxy apply tex ready
 
 $(TEXRES): $(BDIR)/%.pdf: $(TEXDIR)/%.tex $(TEXDIR)/*.tex  
 	TEXINPUTS=$$TEXINPUTS:$(TEXDIR)//:$(BDIR)//:./$(INFODIR)// $(TEXGEN) --build-dir=$(BDIR) $< -o $@ &>> $(LOG)
@@ -482,6 +482,9 @@ $(DIARES): $(BDIR)/%.png: $(DIADIR)/%.dia
 
 $(PLOTRES): $(BDIR)/%.png: $(GRAPHDIR)/%.plt $(GRAPHDIR)/%.dat
 	GNUPLOT_LIB=$(GRAPHDIR) $(PLOTGEN) -e 'set output "$@"' -c $< &>> $(LOG)	
+
+pbuild:
+	mkdir -p build
 
 apply:
 	TEXINPUTS=$$TEXINPUTS:$(TEXDIR)//:$(BDIR)//:./$(INFODIR)// $(TEXGEN) --build-dir=$(BDIR) $(TEX)/application.tex -o application.pdf &>> $(LOG)

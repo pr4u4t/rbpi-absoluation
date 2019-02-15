@@ -40,7 +40,7 @@ PLOTS=$(GRAPHDIR)/export_swiat.plt $(GRAPHDIR)/income_prod.plt $(GRAPHDIR)/polit
 
 PLOTRES=$(BDIR)/export_swiat.png $(BDIR)/income_prod.png $(BDIR)/polityka_cen.png $(BDIR)/porownanie.png $(BDIR)/price_weight.png $(BDIR)/sale_prod.png $(BDIR)/stat_wysz_kanada.png $(BDIR)/stat_wysz_polska.png $(BDIR)/storage.png $(BDIR)/visit_prod.png
 
-all: clean-log plots diagrams sheets doxy apply tex ready
+all: clean-log pbuild plots diagrams sheets doxy apply tex ready
 
 $(TEXRES): $(BDIR)/%.pdf: $(TEXDIR)/%.tex $(TEXDIR)/*.tex  
 	TEXINPUTS=$$TEXINPUTS:$(TEXDIR)//:$(BDIR)//:./$(INFODIR)// $(TEXGEN) --build-dir=$(BDIR) $< -o $@ &>> $(LOG)
@@ -53,6 +53,9 @@ $(DIARES): $(BDIR)/%.png: $(DIADIR)/%.dia
 
 $(PLOTRES): $(BDIR)/%.png: $(GRAPHDIR)/%.plt $(GRAPHDIR)/%.dat
 	GNUPLOT_LIB=$(GRAPHDIR) $(PLOTGEN) -e 'set output "$@"' -c $< &>> $(LOG)	
+
+pbuild:
+	mkdir -p build
 
 apply:
 	TEXINPUTS=$$TEXINPUTS:$(TEXDIR)//:$(BDIR)//:./$(INFODIR)// $(TEXGEN) --build-dir=$(BDIR) $(TEX)/application.tex -o application.pdf &>> $(LOG)
