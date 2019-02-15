@@ -4,7 +4,7 @@
 #include <inttypes.h>
 #include <sys/queue.h>
 #include <stdlib.h>
-//#include <metadata.h>
+#include <meta.h>
 
 typedef struct _MetaData MetaData;
 
@@ -48,7 +48,7 @@ struct _IterableFuncs {
 };
 
 struct _Iterable {
-    const MetaData* _meta;
+    const Meta* _meta;
 };
 
 /* -- ARRAY -- */
@@ -74,7 +74,7 @@ struct _ArrayData {
 };
 
 struct _Array {
-    const MetaData* _meta;
+    const Meta* _meta;
     ArrayData      _data;
 };
 

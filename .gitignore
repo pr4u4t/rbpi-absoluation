@@ -58,3 +58,5 @@ depcomp
 libtool
 ltmain.sh
 **/.deps
+Makefile
+*/Makefile

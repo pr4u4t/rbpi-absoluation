@@ -34,16 +34,13 @@ static const ArrayFuncs Array_vft = {
     .at             = Array_at,
     .set            = Array_set,
     .size           = Array_size,
- //   .maxSize        = Array_maxSize,
- //   .setMaxSize     = Array_setMaxSize,
     .elemSize       = Array_elemSize,
     .setElemSize    = Array_setElemSize
 };
 
-static const MetaData ArrayMetaData = {
-    ._funcs = &Array_vft,
-    ._prop  = 0,
-    ._meta  = 0,
+static const Meta ArrayMetaData = {
+    ._funcs = static_cast(struct _Funcs*,&Array_vft),
+    ._mprop  = 0,
     ._size  = sizeof(Array),
     ._fsize = sizeof(ArrayFuncs),
     ._msize = 0,

@@ -13,17 +13,17 @@ enum _FactoryEachMode {
 
 OBJECT(Factory,Object,
     METHODS(
-        METHOD(bool,          open,           string                                   ),
-        METHOD(bool,          load,           string                                   ),
-        METHOD(bool,          unload,         string                                   ),
-        METHOD(pointer,       instance,       string                                   ),
-        METHOD(pointer,       instanceById,   int                                      ),
-        METHOD(pointer,       newInstance,    string                                   ),
-        METHOD(void,          close                                                    ),
-        METHOD(bool,          loadByPath,     string,       string                     ),
-        METHOD(pointer,       hasInstance,    string                                   ),
-        METHOD(pointer,       hasLoader,      string                                   ),
-        METHOD(int,           foreach,        funcptr, pointer,    int                 )
+        VMETHOD(bool,          open,           string                                   ),
+        VMETHOD(bool,          load,           string                                   ),
+        VMETHOD(bool,          unload,         string                                   ),
+        VMETHOD(pointer,       instance,       string                                   ),
+        VMETHOD(pointer,       instanceById,   int                                      ),
+        VMETHOD(pointer,       newInstance,    string                                   ),
+        VMETHOD(void,          close                                                    ),
+        VMETHOD(bool,          loadByPath,     string,       string                     ),
+        VMETHOD(pointer,       hasInstance,    string                                   ),
+        VMETHOD(pointer,       hasLoader,      string                                   ),
+        VMETHOD(int,           foreach,        funcptr, pointer,    int                 )
     ),
     PROPERTIES(
     )

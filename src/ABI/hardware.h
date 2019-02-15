@@ -6,8 +6,8 @@
 OBJECT(Hardware,Object,
     METHODS
     (
-        METHOD(void, isr    ),
-        METHOD(int,  chipID )
+        VMETHOD(void, isr    ),
+        VMETHOD(int,  chipID )
     ),
     PROPERTIES(
     )

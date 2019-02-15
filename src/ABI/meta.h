@@ -39,6 +39,7 @@ struct _Meta {
 	size_t                  _mpsize;
 	const char*             _name;
     int                     _type;
+    struct Meta*            _base;
 };
 
 struct _MetaFunc {
@@ -194,26 +195,6 @@ const Meta Name ## Meta  =   {  					                    \
     )     
 #endif
     
-#define callIterator(type,object,method,...) ((typeof(((cat(type,Funcs)*)0)->method)) *(**((void****)   &object) + offsetof(cat(type,Funcs),method) / sizeof(void*)))(static_cast(type*,&object) __VA_OPT__(,) __VA_ARGS__) 
-#define callObject(type,object,method,...  ) ((typeof(((cat(type,Funcs)*)0)->method)) *(***((void*****) &object) + offsetof(cat(type,Funcs),method) / sizeof(void*)))(*static_cast(type**,&object) __VA_OPT__(,) __VA_ARGS__)
-
-/** -- ITER -- **/
-typedef struct _Iterator Iterator;
-struct _Iterator {
-
-};    
-    
-#ifndef call
-#define call(type,object,method,...)                      		    \
-({									                                \
-    __auto_type _o = object;						                \
-    _Generic((object),                                    		    \
-        Iterator: callIterator(type,_o,method,__VA_ARGS__),     	\
-        default:  callObject(type,_o,method,__VA_ARGS__)        	\
-    );                                                              \
-}) 
-#endif  
-
 #ifndef set
 #define set(type,object,prop,value) 	static_cast(type ## Properties*,&static_cast(type*,object)->_properties)->_ ## prop = value
 #endif
