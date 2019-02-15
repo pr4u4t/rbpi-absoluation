@@ -53,17 +53,28 @@ typedef uint8_t ADS1256RegValue;
 /* -- DEFINITIONS -- */
 
 //definition of gain channel values
-enum _ADS1256Gain {
-	ADS1256_GAIN_1	= 0,	/* GAIN 1 	*/
-	ADS1256_GAIN_2	= 1,	/* GAIN 2 	*/
-	ADS1256_GAIN_4	= 2,	/* GAIN 4 	*/
-	ADS1256_GAIN_8	= 3,	/* GAIN 8 	*/
-	ADS1256_GAIN_16	= 4,	/* GAIN	16 	*/
-	ADS1256_GAIN_32	= 5,	/* GAIN 32 	*/
-	ADS1256_GAIN_64	= 6	    /* GAIN 64 	*/
-};
+//enum _ADS1256Gain {
+//	ADS1256_GAIN_1	= 0,	/* GAIN 1 	*/
+//	ADS1256_GAIN_2	= 1,	/* GAIN 2 	*/
+//	ADS1256_GAIN_4	= 2,	/* GAIN 4 	*/
+//	ADS1256_GAIN_8	= 3,	/* GAIN 8 	*/
+//	ADS1256_GAIN_16	= 4,	/* GAIN	16 	*/
+//	ADS1256_GAIN_32	= 5,	/* GAIN 32 	*/
+//	ADS1256_GAIN_64	= 6	    /* GAIN 64 	*/
+//};
 
+SMART_ENUM(ADS1256Gain,
+	NUM(GAIN_1,		0),
+    NUM(GAIN_2,		1),
+    NUM(GAIN_4,		2),
+    NUM(GAIN_8,		3),
+    NUM(GAIN_16,	4),
+    NUM(GAIN_32,	5),
+    NUM(GAIN_64,	6),
+)
+    
 //definition of sampling speed values
+/*
 enum _ADS1256DataRate {
 	ADS1256_30000SPS   = 0xF0, //reset the default values 
 	ADS1256_15000SPS   = 0xE0,
@@ -82,24 +93,58 @@ enum _ADS1256DataRate {
 	ADS1256_5SPS       = 0x13,
 	ADS1256_2d5SPS     = 0x03
 };
-
+*/
+SMART_ENUM(ADS1256DataRate,
+	NUM(30000SPS,		0xF0),
+    NUM(15000SPS,		0xE0),
+    NUM(7500SPS,		0xD0),
+    NUM(3750SPS,		0xC0),
+    NUM(2000SPS,        0xB0),
+	NUM(1000SPS,        0xA1),
+	NUM(500SPS,         0x92),
+	NUM(100SPS,         0x82),
+	NUM(60SPS,          0x72),
+	NUM(50SPS,          0x63),
+	NUM(30SPS,          0x53),
+	NUM(25SPS,          0x43),
+	NUM(15SPS,          0x33),
+	NUM(10SPS,          0x20),
+	NUM(5SPS,           0x13),
+	NUM(2d5SPS,         0x03)
+)
 //
-enum _ADS1256Register {
+
+//enum _ADS1256Register {
 	/*Register address, followed by reset the default values */
-	REG_STATUS = 0,    // x1H
-	REG_MUX    = 1,    // 01H
-	REG_ADCON  = 2,    // 20H
-	REG_DRATE  = 3,    // F0H
-	REG_IO     = 4,    // E0H
-	REG_OFC0   = 5,    // xxH
-	REG_OFC1   = 6,    // xxH
-	REG_OFC2   = 7,    // xxH
-	REG_FSC0   = 8,    // xxH
-	REG_FSC1   = 9,    // xxH
-	REG_FSC2   = 10,   // xxH
-};
+//	REG_STATUS = 0,    // x1H
+//	REG_MUX    = 1,    // 01H
+//	REG_ADCON  = 2,    // 20H
+//	REG_DRATE  = 3,    // F0H
+//	REG_IO     = 4,    // E0H
+//	REG_OFC0   = 5,    // xxH
+//	REG_OFC1   = 6,    // xxH
+//	REG_OFC2   = 7,    // xxH
+//	REG_FSC0   = 8,    // xxH
+//	REG_FSC1   = 9,    // xxH
+//	REG_FSC2   = 10,   // xxH
+//};
+
+SMART_ENUM(ADS1256Register,
+    NUM(REG_STATUS,     0),
+    NUM(REG_MUX         1),
+	NUM(REG_ADCON       2),
+	NUM(REG_DRATE       3),
+	NUM(REG_IO          4),
+	NUM(REG_OFC0        5),
+	NUM(REG_OFC1        6),
+	NUM(REG_OFC2        7),
+	NUM(REG_FSC0        8),
+	NUM(REG_FSC1        9),
+	NUM(REG_FSC2        10)
+)
 
 /* Command definition TTable 24. Command Definitions --- ADS1256 datasheet Page 34 */
+/*
 enum _ADS1256Command {
     CMD_WAKEUP  = 0x00, // Completes SYNC and Exits Standby Mode 0000  0000 (00h)
     CMD_RDATA   = 0x01, // Read Data 0000  0001 (01h)
@@ -116,17 +161,44 @@ enum _ADS1256Command {
     CMD_STANDBY = 0xFD, // Begin Standby Mode 1111   1101 (FDh)
     CMD_RESET   = 0xFE, // Reset to Power-Up Values 1111   1110 (FEh)
 };
-
+*/
+SMART_ENUM(ADS1256Command,
+    NUM(CMD_WAKEUP,     0x00),
+    NUM(CMD_RDATA,      0x01),
+    NUM(CMD_RDATAC,     0x03),
+    NUM(CMD_SDATAC,     0x0F),
+    NUM(CMD_RREG,       0x10),
+    NUM(CMD_WREG,       0x50),
+    NUM(CMD_SELFCAL,    0xF0),
+    NUM(CMD_SELFOCAL,   0xF1),
+    NUM(CMD_SELFGCAL,   0xF2),
+    NUM(CMD_SYSOCAL,    0xF3),
+    NUM(CMD_SYSGCAL,    0xF4),
+    NUM(CMD_SYNC,       0xFC),
+    NUM(CMD_STANDBY,    0xFD),
+    NUM(CMD_RESET,      0xFE)
+)
+/*
 enum _ADS1256Mode {
     SINGLE_ENDED = 0,
     DIFFERENTIAL = 1
 };
-
+*/
+SMART_ENUM(ADS1256Mode,
+    NUM(SINGLE_ENDED,   0),
+    NUM(DIFFERENTIAL,   1)
+)
+/*
 enum _ADS1256Channels {
 	EIGHT_CHANNELS 	= 8,
 	FOUR_CHANNELS 	= 4
 };
-
+*/
+SMART_ENUM(ADS1256Channels,
+    NUM(EIGHT_CHANNELS, 8),
+    NUM(FOUR_CHANNELS,  4)
+)
+/*
 enum _ADS1256Timings {
     DELAY_SEND      = 2,
     DELAY_CONFIGURE = 50,
@@ -135,7 +207,15 @@ enum _ADS1256Timings {
     DELAY_SYNC      = 5,
     DELAY_WAKEUP    = 25
 };
-
+*/
+SMART_ENUM(ADS1256Timings,
+    NUM(DELAY_SEND,           2),
+    NUM(DELAY_CONFIGURE,      50),
+    NUM(DELAY_DATA,           10),
+    NUM(DELAY_WRITE,          5),
+    NUM(DELAY_SYNC,           5),
+    NUM(DELAY_WAKEUP,         25)
+)
 /* -- structs -- */
 
 
