@@ -7,10 +7,12 @@
 #include <sys/queue.h>
 
 typedef void* yyscan_t;
+/*
 typedef struct _CommandShell CommandShell;
-/*typedef struct _CommandShellFuncs CommandShellFuncs;*/
+typedef struct _CommandShellFuncs CommandShellFuncs;
 typedef struct _CommandShellMetaFuncs CommandShellMetaFuncs;
 typedef struct _CommandShellData CommandShellData;
+*/
 typedef struct _ShellCommand ShellCommand;
 typedef struct _ShellCommandArg ShellCommandArg;
 typedef struct _ShellCommandArgs ShellCommandArgs;
@@ -32,6 +34,7 @@ struct _CommandShellScript {
     TAILQ_HEAD(_ShellCommands, _ShellCommand) _commands; 
 };
 
+/*
 struct _CommandShellData {
     Terminal *terminal;
     yyscan_t scanner;
@@ -39,12 +42,12 @@ struct _CommandShellData {
     CommandShellScript commands;
 };
 
-/*struct _CommandShellFuncs {*/
-    /*ShellFuncs  _base;*/
-    /*bool (*command)     (CommandShell* this, const ShellCommand* comm);*/
-    /*bool (*ffi_exec)    (CommandShell* this, const ShellCommand* comm, int args);*/
-    /*bool (*basic_exec)  (CommandShell* this, const ShellCommand* comm, int args);*/
-/*};*/
+struct _CommandShellFuncs {
+    ShellFuncs  _base;
+    bool (*command)     (CommandShell* this, const ShellCommand* comm);
+    bool (*ffi_exec)    (CommandShell* this, const ShellCommand* comm, int args);
+    bool (*basic_exec)  (CommandShell* this, const ShellCommand* comm, int args);
+};
 
 struct _CommandShellMetaFuncs {
     ShellMetaFuncs  _base;
@@ -57,13 +60,14 @@ struct _CommandShell {
     Shell               _base;
     CommandShellData    _data;
 };
+*/
 
 OBJECT(CommandShell,Object,
        METHODS
        (
             METHOD(bool,    command,    const ShellCommand*),
-            METHOD(bool,    ffi_exec,   const ShellCommand*),
-            METHOD(bool,    basic_exec, const ShellCommand*)
+            METHOD(bool,    ffi_exec,   const ShellCommand*,    int),
+            METHOD(bool,    basic_exec, const ShellCommand*,    int)
         )
 )
 

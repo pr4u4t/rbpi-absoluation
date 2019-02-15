@@ -6,6 +6,7 @@
 #include <adc.h>
 #include <python.h>
 
+/*
 typedef struct _PythonShellFuncs PythonShellFuncs;
 typedef struct _PythonShellMetaFuncs PythonShellMetaFuncs;
 typedef struct _PythonShellData PythonShellData;
@@ -35,5 +36,14 @@ struct _PythonShell {
     Shell           _base;
     LuaShellData    _data;
 };
+*/
+
+OBJECT(PythonShell,Object,
+       METHODS
+       (
+            METHOD(const char,  script),
+            METHOD(void,        setScript,  const char)
+        )
+)
 
 MODULE_LOADER(PythonShell) 

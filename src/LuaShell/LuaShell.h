@@ -8,21 +8,23 @@
 #include <lualib.h>
 #include <lauxlib.h>
 
-/*typedef struct _LuaShellFuncs LuaShellFuncs;*/
-/*typedef struct _LuaShellMetaFuncs LuaShellMetaFuncs;*/
-/*typedef struct _LuaShellData LuaShellData;*/
-/*typedef struct _LuaShell LuaShell;*/
+/*
+typedef struct _LuaShellFuncs LuaShellFuncs;
+typedef struct _LuaShellMetaFuncs LuaShellMetaFuncs;
+typedef struct _LuaShellData LuaShellData;
+typedef struct _LuaShell LuaShell;
+*/
 
 //typedef struct _LuaContext LuaContext; 
 //struct _LuaContext{
 //    Factory* _factory;
 //    
 //};
-
-/*struct _LuaShellFuncs {*/
-    /*ShellFuncs  _base;*/
-    /*const char* (*script)     (LuaShell* shell);*/
-    /*void  (*setScript)        (LuaShell* shell, const char* script);*/
+/*
+struct _LuaShellFuncs {
+    ShellFuncs  _base;
+    const char* (*script)     (LuaShell* shell);
+    void  (*setScript)        (LuaShell* shell, const char* script);
 };
 
 struct _LuaShellMetaFuncs {
@@ -41,6 +43,7 @@ struct _LuaShell {
     Shell           _base;
     LuaShellData    _data;
 };
+*/
 
 OBJECT(LuaShell,Object
         METHODS

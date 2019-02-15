@@ -39,10 +39,12 @@ typedef enum _ADS1256Mode       ADS1256Mode;
 typedef enum _ADS1256Channels   ADS1256Channels;
 typedef enum _ADS1256Timings    ADS1256Timings;
 
+/*
 typedef struct _ADS1256Data         ADS1256Data; 
-/*typedef struct _ADS1256Funcs        ADS1256Funcs;*/
+typedef struct _ADS1256Funcs        ADS1256Funcs;
 typedef struct _ADS1256MetaFuncs    ADS1256MetaFuncs;
 typedef struct _ADS1256             ADS1256;
+*/
 
 typedef int32_t ADS1256Value;
 typedef uint8_t ADS1256Channel;
@@ -136,17 +138,19 @@ enum _ADS1256Timings {
 
 /* -- structs -- */
 
-struct _ADS1256Data {
-	ADS1256Gain        gain;           /* GAIN  */
-	ADS1256DataRate    dataRate;       /* DATA output  speed*/
-	ADS1256Value       adc[8];         /* ADC  Conversion value */
-	ADS1256Channel     channel;        /* The current channel in the ISR (interrupt service routine) */
-	ADS1256Mode        mode;           /* Scanning mode, 0 Single-ended input  8 channel
-                                                         1 Differential input  4 channel
-                                        */
-};
 
-/*struct _ADS1256Funcs {
+/*struct _ADS1256Data {*/
+/*	ADS1256Gain        gain;           /* GAIN  */
+/*	ADS1256DataRate    dataRate;       /* DATA output  speed*/
+/*	ADS1256Value       adc[8];         /* ADC  Conversion value */
+/*	ADS1256Channel     channel;        /* The current channel in the ISR (interrupt service routine) */
+/*	ADS1256Mode        mode;           /* Scanning mode, 0 Single-ended input  8 channel
+/*                                                         1 Differential input  4 channel
+/*                                        */
+/*};
+
+/*
+struct _ADS1256Funcs {
     ADCFuncs        _base;
     //protected
     ADS1256Value    (*value)            (ADS1256 *this, ADS1256Channel chan);
@@ -162,7 +166,7 @@ struct _ADS1256Data {
     void            (*setDiffChannel)   (ADS1256 *this, ADS1256Channel chan);
     void            (*waitDrdy)         (ADS1256 *this);
     ADS1256Value    (*readData)         (ADS1256 *this);
-};*/
+};
 
 struct _ADS1256MetaFuncs {
     ADCMetaFuncs _base;
@@ -172,6 +176,7 @@ struct _ADS1256 {
     ADC                 _base;
     ADS1256Data         _data;
 };
+*/
 
 OBJECT(ADS1256,Object
         METHODS
