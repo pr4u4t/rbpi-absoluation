@@ -20,12 +20,12 @@ void meta_info(Object* object,Terminal *term){
     
     for(const MetaFunc *i = static_cast(MetaFunc*,object->_meta->_mfuncs);
         i < static_cast(MetaFunc*,object->_meta->_mfuncs)+(object->_meta->_msize / sizeof(MetaFunc)); ++i){
-        (term) ? call(Terminal,term,writef,"\tfunction: %s %s ",VariantTypeName[i->_ret],i->_name) : printf("\tfunction: %s %s ",VariantTypeName[i->_ret],i->_name);
+        (term) ? call(Terminal,term,writef,"\tfunction: %s %s ",ENUM_STRING(VariantType,i->_ret)/*VariantTypeName[i->_ret]*/,i->_name) : printf("\tfunction: %s %s ",ENUM_STRING(VariantType,i->_ret)/*VariantTypeName[i->_ret]*/,i->_name);
         if(i->_arguments && *i->_arguments){
             char *sptr = 0;
             (term) ? call(Terminal,term,write,"(",strlen("(")) : printf("(");
             for(void** args = (void**)i->_arguments; *args != 0; ++args){
-                (term) ? call(Terminal,term,writef,"%s",VariantTypeName[static_cast(long int,*args)]) : printf("%s",VariantTypeName[static_cast(long int,*args)]);
+                (term) ? call(Terminal,term,writef,"%s",/*VariantTypeName[static_cast(long int,*args)]*/ ENUM_STRING(VariantType,static_cast(long int,*args))) : printf("%s",VariantTypeName[static_cast(long int,*args)]);
                 if(*(args+1) != 0) (term) ? call(Terminal,term,write,",",strlen(",")) : printf(",");
             }   
             if(i->_type == FUNC_VARIADIC)

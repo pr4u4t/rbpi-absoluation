@@ -14,8 +14,8 @@
 #define PRINT_NARRAY(udata,...)		FORMAT_NARRAY ENCAPSULE(udata, DECAPSULE __VA_ARGS__ )
 
 #define ENUM_VAL(num,name)		num ## _ ##name 
-#define ENUM_STRING(num,value)		
-#define ENUM_STRING_VAL(num,str)
+#define ENUM_STRING(ename,value)     ename ## _to_string(value)
+#define STRING_ENUM(ename,estring)    string_to_ ## ename(ename,estring)
 
 #define SMART_ENUM(name,...)                                                                \
 typedef enum _ ## name name;                                                                \
@@ -26,9 +26,9 @@ const char* name ## _ ## strings[][2] = {                  					                
         MAP(PRINT_NARRAY,name,__VA_ARGS__)             						                \
         0                                               					                \
 };												                                            \
-const char* name ## _to_string(name value){							                        \
+const char* name ## _to_string(int value){							                        \
 	for(const char** p = static_cast(const char**,name ## _ ## strings); *p != 0; ++p){	    \
-		if(*p == static_cast(char*,value)) return *p;					                    \
+		if(static_cast(int*,*p) == *static_cast(int**,&value)) return *p;					\
 	}											                                            \
 	return 0;										                                        \
 }												                                            \
