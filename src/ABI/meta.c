@@ -25,7 +25,7 @@ void meta_info(Object* object,Terminal *term){
             char *sptr = 0;
             (term) ? call(Terminal,term,write,"(",strlen("(")) : printf("(");
             for(void** args = (void**)i->_arguments; *args != 0; ++args){
-                (term) ? call(Terminal,term,writef,"%s",/*VariantTypeName[static_cast(long int,*args)]*/ ENUM_STRING(VariantType,static_cast(long int,*args))) : printf("%s",VariantTypeName[static_cast(long int,*args)]);
+                (term) ? call(Terminal,term,writef,"%s",ENUM_STRING(VariantType,static_cast(long int,*args))) : printf("%s",ENUM_STRING(VariantType,static_cast(long int,*args)));
                 if(*(args+1) != 0) (term) ? call(Terminal,term,write,",",strlen(",")) : printf(",");
             }   
             if(i->_type == FUNC_VARIADIC)
@@ -38,8 +38,8 @@ void meta_info(Object* object,Terminal *term){
 
 MetaFunc* metafunc_info(Object* object,const char* name){
     if(!object || !name) return NULL;
-    for(ObjectMetaFunc *i = static_cast(ObjectMetaFunc*,object->_meta->_meta);
-        i < static_cast(MetaFunc*,object->_meta->_meta)+(object->_meta->_msize / sizeof(MetaFunc)); ++i){
+    for(MetaFunc *i = static_cast(MetaFunc*,object->_meta->_mfuncs);
+        i < static_cast(MetaFunc*,object->_meta->_mfuncs)+(object->_meta->_msize / sizeof(MetaFunc)); ++i){
         if(strcmp(i->_name,name) == 0) return i;
     }   
     
@@ -48,7 +48,7 @@ MetaFunc* metafunc_info(Object* object,const char* name){
 
 MetaFunc* metafunc_find(Object* object,const char* name,const void** signature){
     if(!object || !name) return NULL;
-    for(ObjectMetaFunc *i = static_cast(MetaFunc*,object->_meta->_meta);
+    for(MetaFunc *i = static_cast(MetaFunc*,object->_meta->_mfuncs);
         i < static_cast(MetaFunc*,object->_meta->_mfuncs)+(object->_meta->_msize / sizeof(MetaFunc)); ++i){
         if(!i->_name) continue;
         if(strcmp(i->_name,name) == 0){ 

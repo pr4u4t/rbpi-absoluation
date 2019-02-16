@@ -1,7 +1,7 @@
 #include <terminal.h> 
 
 
-static TerminalFuncs Terminal_vft = {};
+/*static TerminalFuncs Terminal_vft = {};
 
 static TerminalMetaFuncs TerminalMeta_vft = {
     .open           = META_FUNC(Terminal,open,VAR_BOOLEAN,FUNC_FIXED,MARG(VAR_PTR),MARG(VAR_PTR),MARG(VAR_INTEGER)),
@@ -18,3 +18,4 @@ static TerminalMetaFuncs TerminalMeta_vft = {
 };
 
 OBJECT_REGISTER(Terminal,OBJECT_TERMINAL,Terminal_vft,TerminalMeta_vft,Object)
+*/

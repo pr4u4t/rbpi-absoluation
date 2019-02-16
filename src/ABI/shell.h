@@ -6,16 +6,15 @@
 OBJECT(Shell,Object,
     METHODS
     (
-        METHOD(void,        setVar,      string,    string  ),
-        METHOD(string,      var,         string             ),
-        METHOD(int,         vars                            ),
-        METHOD(bool,        open,        pointer            ),
-        METHOD(void,        close                           ),
-        METHOD(int,         exec,        int,   string      ),
-        METHOD(void,        setTerminal, pointer            )
+        VMETHOD(void,        setVar,      string,    string  ),
+        VMETHOD(string,      var,         string             ),
+        VMETHOD(int,         vars                            ),
+        VMETHOD(bool,        open,        pointer            ),
+        VMETHOD(void,        close                           ),
+        VMETHOD(int,         exec,        int,   string      ),
+        VMETHOD(void,        setTerminal, pointer            )
     ),
     PROPERTIES(
-        
     )
 )
 
