@@ -1,5 +1,10 @@
+#ifndef _TERMINAL_C_
+#define _TERMINAL_C_
+
+//#define _Terminal_source_
 #include <terminal.h> 
 
+#endif
 
 /*static TerminalFuncs Terminal_vft = {};
 

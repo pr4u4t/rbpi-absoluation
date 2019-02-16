@@ -12,17 +12,17 @@ enum _TerminalStreamMode {
 
 OBJECT(Terminal,Object,
     METHODS(
-        METHOD(bool,    open,       void*,          void*,  TerminalStreamMode),
-        METHOD(int,     read,       uint8_t*,       size_t),
-        METHOD(int,     write,      const uint8_t*, size_t),
-        METHOD(int,     readf,      const uint8_t*, uint8_t*),
-        METHOD(int,     writef,     const uint8_t*, ...),
-        METHOD(void,    flush),
-        METHOD(void,    close),
-        METHOD(void,    setStreamMode,                      TerminalStreamMode),
-        METHOD(TerminalStreamMode,   streamMode),
-        METHOD(void,    in),
-        METHOD(void,    out)
+        VMETHOD(bool,                open,           void*,          void*,  TerminalStreamMode  ),
+        VMETHOD(int,                 read,           uint8_t*,       size_t                      ),
+        VMETHOD(int,                 write,          const uint8_t*, size_t                      ),
+        VMETHOD(int,                 readf,          const uint8_t*, uint8_t*                    ),
+        VMETHOD(int,                 writef,         const uint8_t*,  ...                      ),  //VARIADIC
+        VMETHOD(void,                flush                                                       ),
+        VMETHOD(void,                close                                                       ),
+        VMETHOD(void,                setStreamMode,  TerminalStreamMode                          ),
+        VMETHOD(TerminalStreamMode,  streamMode                                                  ),
+        VMETHOD(void,                in                                                          ),
+        VMETHOD(void,                out                                                         )
     ),
     PROPERTIES(
     )
