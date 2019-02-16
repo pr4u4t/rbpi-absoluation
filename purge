@@ -1,6 +1,6 @@
 #!/bin/bash
 
 #make clean
-rm -rf m4 aclocal.m4 autom4te.cache autoscan.log compile config.guess config.h.in config.h.in~ config.log config.status config.sub configure configure.ac depcomp install-sh ltmain.sh Makefile.in missing stamp-h1
+rm -rf config.h libtool m4 aclocal.m4 autom4te.cache autoscan.log compile config.guess config.h.in config.h.in~ config.log config.status config.sub configure configure.ac depcomp install-sh ltmain.sh Makefile.in missing stamp-h1
 find . -type f -name 'Makefile.in' -exec rm {} +
-
+find . -type f -name 'Makefile' -exec rm {} +

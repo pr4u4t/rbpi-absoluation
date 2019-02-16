@@ -138,10 +138,6 @@ CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CPP = gcc -E
 CPPFLAGS = 
-CXX = g++
-CXXCPP = g++ -E
-CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -203,7 +199,6 @@ abs_top_builddir = /home/prauat/Sensors
 abs_top_srcdir = /home/prauat/Sensors
 ac_ct_AR = ar
 ac_ct_CC = gcc
-ac_ct_CXX = g++
 ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
@@ -267,9 +262,11 @@ GRAPHDIR = graph
 TPLDIR = template
 LOG = build.log
 BDIR = build
-MAINDOC = nowy.pdf
-TEXS = $(TEXDIR)/karta_gwarancyjna_EN.tex $(TEXDIR)/karta_gwarancyjna_PL.tex $(TEXDIR)/polityka_cookies_PL.tex $(TEXDIR)/polityka_cookies_EN.tex $(TEXDIR)/regulamin_PL.tex $(TEXDIR)/regulamin_EN.tex $(TEXDIR)/plan_bp.tex $(TEXDIR)/nowy.tex
-TEXRES = $(BDIR)/karta_gwarancyjna_EN.pdf $(BDIR)/karta_gwarancyjna_PL.pdf $(BDIR)/polityka_cookies_PL.pdf $(BDIR)/polityka_cookies_EN.pdf $(BDIR)/regulamin_PL.pdf $(BDIR)/regulamin_EN.pdf $(BDIR)/plan_bp.pdf $(BDIR)/nowy.pdf
+MAINDOC = documentation.pdf
+PRESENTDOC = presentation.pdf
+APPLYDOC = application.pdf
+TEXS = $(TEXDIR)/karta_gwarancyjna_EN.tex $(TEXDIR)/karta_gwarancyjna_PL.tex $(TEXDIR)/polityka_cookies_PL.tex $(TEXDIR)/polityka_cookies_EN.tex $(TEXDIR)/regulamin_PL.tex $(TEXDIR)/regulamin_EN.tex $(TEXDIR)/plan_bp.tex $(TEXDIR)/presentation.tex $(TEXDIR)/application.tex $(TEXDIR)/documentation.tex
+TEXRES = $(BDIR)/karta_gwarancyjna_EN.pdf $(BDIR)/karta_gwarancyjna_PL.pdf $(BDIR)/polityka_cookies_PL.pdf $(BDIR)/polityka_cookies_EN.pdf $(BDIR)/regulamin_PL.pdf $(BDIR)/regulamin_EN.pdf $(BDIR)/plan_bp.pdf $(BDIR)/documentation.pdf $(BDIR)/application.pdf $(BDIR)/presentation.pdf
 SHEETS = $(OTHERDIR)/analiza_rynkowa.ods $(OTHERDIR)/koszty_bp.ods $(OTHERDIR)/koszty.ods $(OTHERDIR)/prognoza_przychodow_bp.ods $(OTHERDIR)/wycena.ods $(OTHERDIR)/bilans.ods $(OTHERDIR)/koszty_brutto.ods $(OTHERDIR)/prognoza.ods $(OTHERDIR)/rachunek.ods
 SHEETRES = $(BDIR)/analiza_rynkowa.pdf $(BDIR)/koszty_bp.pdf $(BDIR)/koszty.pdf $(BDIR)/prognoza_przychodow_bp.pdf $(BDIR)/wycena.pdf $(BDIR)/bilans.pdf $(BDIR)/koszty_brutto.pdf $(BDIR)/prognoza.pdf $(BDIR)/rachunek.pdf
 DIAS = $(DIADIR)/a_la_gantt.dia $(DIADIR)/basic_component.dia $(DIADIR)/Basic.dia $(DIADIR)/Diagram1.dia $(DIADIR)/Diagram2.dia $(DIADIR)/diagram3.dia $(DIADIR)/extended_comp.dia $(DIADIR)/groups.dia $(DIADIR)/mindmap.dia $(DIADIR)/Przeplyw.dia $(DIADIR)/reklamacja.dia $(DIADIR)/shop_with_place.dia $(DIADIR)/struktura_org.dia $(DIADIR)/zamowienie.dia
@@ -469,7 +466,7 @@ uninstall-am:
 .PRECIOUS: Makefile
 
 
-all: clean-log pbuild plots diagrams sheets doxy apply tex ready
+all: clean-log pbuild plots diagrams sheets doxy tex ready
 
 $(TEXRES): $(BDIR)/%.pdf: $(TEXDIR)/%.tex $(TEXDIR)/*.tex  
 	TEXINPUTS=$$TEXINPUTS:$(TEXDIR)//:$(BDIR)//:./$(INFODIR)// $(TEXGEN) --build-dir=$(BDIR) $< -o $@ &>> $(LOG)
@@ -486,11 +483,10 @@ $(PLOTRES): $(BDIR)/%.png: $(GRAPHDIR)/%.plt $(GRAPHDIR)/%.dat
 pbuild:
 	mkdir -p build
 
-apply:
-	TEXINPUTS=$$TEXINPUTS:$(TEXDIR)//:$(BDIR)//:./$(INFODIR)// $(TEXGEN) --build-dir=$(BDIR) $(TEX)/application.tex -o application.pdf &>> $(LOG)
-
-ready: $(BDIR)/$(MAINDOC) 
+ready: 
 	$(CP) $(BDIR)/$(MAINDOC) $(MAINDOC)
+	$(CP) $(BDIR)/$(APPLYDOC) $(APPLYDOC)
+	$(CP) $(BDIR)/$(PRESENTDOC) $(PRESENTDOC)
 
 sheets: $(SHEETRES)
 
@@ -510,7 +506,7 @@ show-errors:
 	$(AWK) '/[Ll][Aa][Tt][Ee][Xx]/{f=1}f' $(LOG) | $(GREP) -nE "[Ee][Rr]{2}[oO][rR]"  || echo -e "\e[32mno errors found"
 
 clean:
-	$(REM) $(PLOTRES) $(TEXRES) $(DIARES) $(SHEETRES) $(MAINDOC) $(BDIR)/* *.log *.toc *.aux *.out doxygen/*
+	$(REM) $(PLOTRES) $(TEXRES) $(DIARES) $(SHEETRES) $(MAINDOC) $(PRESENTDOC) $(APPLYDOC) $(BDIR)/* *.log *.toc *.aux *.out doxygen/*
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
