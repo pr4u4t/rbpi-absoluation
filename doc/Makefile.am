@@ -30,13 +30,13 @@ TEXS=$(TEXDIR)/presentation.tex $(TEXDIR)/application.tex $(TEXDIR)/documentatio
 
 TEXRES=$(BDIR)/documentation.pdf $(BDIR)/application.pdf $(BDIR)/presentation.pdf
 
-SHEETS=$(OTHERDIR)/analiza_rynkowa.ods $(OTHERDIR)/koszty_bp.ods $(OTHERDIR)/koszty.ods $(OTHERDIR)/prognoza_przychodow_bp.ods $(OTHERDIR)/wycena.ods $(OTHERDIR)/bilans.ods $(OTHERDIR)/koszty_brutto.ods $(OTHERDIR)/prognoza.ods $(OTHERDIR)/rachunek.ods
+SHEETS=$(OTHERDIR)/analiza_rynkowa.ods
 
-SHEETRES=$(BDIR)/analiza_rynkowa.pdf $(BDIR)/koszty_bp.pdf $(BDIR)/koszty.pdf $(BDIR)/prognoza_przychodow_bp.pdf $(BDIR)/wycena.pdf $(BDIR)/bilans.pdf $(BDIR)/koszty_brutto.pdf $(BDIR)/prognoza.pdf $(BDIR)/rachunek.pdf
+SHEETRES=$(BDIR)/analiza_rynkowa.pdf
 
-DIAS=$(DIADIR)/a_la_gantt.dia $(DIADIR)/basic_component.dia $(DIADIR)/Basic.dia $(DIADIR)/Diagram1.dia $(DIADIR)/Diagram2.dia $(DIADIR)/diagram3.dia $(DIADIR)/extended_comp.dia $(DIADIR)/groups.dia $(DIADIR)/mindmap.dia $(DIADIR)/Przeplyw.dia $(DIADIR)/reklamacja.dia $(DIADIR)/shop_with_place.dia $(DIADIR)/struktura_org.dia $(DIADIR)/zamowienie.dia
+DIAS=$(DIADIR)/groups.dia
 
-DIARES=$(BDIR)/a_la_gantt.png $(BDIR)/basic_component.png $(BDIR)/Basic.png $(BDIR)/Diagram1.png $(BDIR)/Diagram2.png $(BDIR)/diagram3.png $(BDIR)/extended_comp.png $(BDIR)/groups.png $(BDIR)/mindmap.png $(BDIR)/Przeplyw.png $(BDIR)/reklamacja.png $(BDIR)/shop_with_place.png $(BDIR)/struktura_org.png $(BDIR)/zamowienie.png
+DIARES=$(BDIR)/groups.png
 
 PLOTS=$(GRAPHDIR)/export_swiat.plt $(GRAPHDIR)/income_prod.plt $(GRAPHDIR)/polityka_cen.plt $(GRAPHDIR)/porownanie.plt $(GRAPHDIR)/price_weight.plt $(GRAPHDIR)/sale_prod.plt $(GRAPHDIR)/stat_wysz_kanada.plt $(GRAPHDIR)/stat_wysz_polska.plt $(GRAPHDIR)/storage.plt $(GRAPHDIR)/visit_prod.plt
 
