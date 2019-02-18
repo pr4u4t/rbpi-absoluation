@@ -48,11 +48,12 @@ a4paper
 
 \newcommand\blankpage{%
     \null
-	\ClearWallPaper
+%	\ClearWallPaper
     \thispagestyle{empty}%
     \addtocounter{page}{-1}%
     \newpage
-	\ULCornerWallPaper{1}{head}}
+%	\ULCornerWallPaper{1}{head}
+}
 
 %\captionsetup{}
 
@@ -76,9 +77,9 @@ a4paper
 \setlistdepth{9}
 \graphicspath{ {images/} }
 
-\title{Biznes plan sklep-meblowy.org}
-\author{Kamila Klonowska <kamila.klon@sklep-meblowy.org>}
-\titlepic{\includegraphics[width=128px]{logo.png}}
+\title{Dokumentacja modułu}
+\author{RobCo sp. z o.o.}
+%\titlepic{\includegraphics[width=128px]{logo.png}}
 
 %definitions
 \newif\ifpersonal
@@ -89,7 +90,7 @@ a4paper
 \titleformat{\subparagraph}[runin]
 {\normalfont\normalsize}{\thesubparagraph}{1em}{}
 
-\ULCornerWallPaper{1}{head}
+%\ULCornerWallPaper{1}{head}
 %\LLCornerWallPaper{1}{foot}
 
 \begin{document}			
@@ -104,52 +105,19 @@ a4paper
 	\input{spis_tresci.tex}
 
 	%pojecia
-	\chapter*{Wstęp}
-		\addcontentsline{toc}{chapter}{Wstęp}
+	\chapter{Wstęp}
 		\input{pojecia.tex}
 						
-	\chapter{Opis przedsięwzięcia}
-		\input{opis_plan_przedsiewziecia_opis_planowanego_przedsiewziecia.tex}
+	\chapter{Obraz}
+		\input{obraz.tex}
 
-	\chapter{Analiza rynku, plan marketingowy}
-		\input{plan_market_charakterystyka_produktow_i_uslug.tex}
-					
-	\chapter{Analiza SWOT}
-		\input{analiza_swot.tex}
+	\chapter{Wypunktowanie}
+		\input{wypunktowanie.tex}
 		
-	\chapter{Plan techniczny}
-		\input{plan_inwest_uzasadnienie.tex}
-	
-	\chapter{Plan finansowy}
-		\section{Źródła finansowania}
-			\input{plan_finansowy_zrodla_finansowania.tex}
-		\section{Koszty miesięczne}
-			\input{plan_finansowy_koszty_miesieczne.tex}
-		\section{Planowane przychody}
-			\input{plan_finansowy_planowane_przychody.tex}
-		\section{Bilans}
-			\input{plan_finansowy_bilans.tex}
-
-\appendix
-
-	\chapter{Regulamin sklepu internetowego}
-		\section{Regulamin polski}
-			\includepdf[pages={1-},scale=0.85,pagecommand={\thispagestyle{headings}},clip,trim=0mm 25mm 0mm 25mm]{regulamin_PL.pdf}
-			
-		\section{Regulamin kanadyjski}
-			\includepdf[pages={1-},scale=0.85,pagecommand={\thispagestyle{headings}},clip,trim=0mm 25mm 0mm 25mm]{regulamin_EN.pdf}
-
-	\chapter{Polityka cookies}
-		\section{Polityka polska}
-			\includepdf[pages={1-},scale=0.85,pagecommand={\thispagestyle{headings}},clip,trim=0mm 25mm 0mm 25mm]{polityka_cookies_PL.pdf}
-
-			\section{Polityka kanadyjska}
-				\includepdf[pages={1-},scale=0.85,pagecommand={\thispagestyle{headings}},clip,trim=0mm 25mm 0mm 25mm]{polityka_cookies_EN.pdf}
-
-	\chapter{Karta gwarancyjna}
-		\section{Polska karta gwarancyjna}
-			\includepdf[pages={1-},scale=0.85,pagecommand={\thispagestyle{headings}},clip,trim=0mm 25mm 0mm 25mm]{karta_gwarancyjna_PL.pdf}
-	
-		\section{Kanadyjska karta gwarancyjna}
-			\includepdf[pages={1-},scale=0.85,pagecommand={\thispagestyle{headings}},clip,trim=0mm 25mm 0mm 25mm]{karta_gwarancyjna_EN.pdf}
+    \chapter{Tabela}
+        \input{tabela.tex}
+    
+    \chapter{Paragrafy}
+        \input{paragrafy.tex}
+        
 \end{document}

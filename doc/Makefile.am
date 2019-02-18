@@ -26,9 +26,9 @@ MAINDOC=documentation.pdf
 PRESENTDOC=presentation.pdf
 APPLYDOC=application.pdf
 
-TEXS=$(TEXDIR)/karta_gwarancyjna_EN.tex $(TEXDIR)/karta_gwarancyjna_PL.tex $(TEXDIR)/polityka_cookies_PL.tex $(TEXDIR)/polityka_cookies_EN.tex $(TEXDIR)/regulamin_PL.tex $(TEXDIR)/regulamin_EN.tex $(TEXDIR)/plan_bp.tex $(TEXDIR)/presentation.tex $(TEXDIR)/application.tex $(TEXDIR)/documentation.tex
+TEXS=$(TEXDIR)/presentation.tex $(TEXDIR)/application.tex $(TEXDIR)/documentation.tex
 
-TEXRES=$(BDIR)/karta_gwarancyjna_EN.pdf $(BDIR)/karta_gwarancyjna_PL.pdf $(BDIR)/polityka_cookies_PL.pdf $(BDIR)/polityka_cookies_EN.pdf $(BDIR)/regulamin_PL.pdf $(BDIR)/regulamin_EN.pdf $(BDIR)/plan_bp.pdf $(BDIR)/documentation.pdf $(BDIR)/application.pdf $(BDIR)/presentation.pdf
+TEXRES=$(BDIR)/documentation.pdf $(BDIR)/application.pdf $(BDIR)/presentation.pdf
 
 SHEETS=$(OTHERDIR)/analiza_rynkowa.ods $(OTHERDIR)/koszty_bp.ods $(OTHERDIR)/koszty.ods $(OTHERDIR)/prognoza_przychodow_bp.ods $(OTHERDIR)/wycena.ods $(OTHERDIR)/bilans.ods $(OTHERDIR)/koszty_brutto.ods $(OTHERDIR)/prognoza.ods $(OTHERDIR)/rachunek.ods
 
