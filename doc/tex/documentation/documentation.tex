@@ -106,16 +106,100 @@ a4paper
 
 	%pojecia
 	\chapter{Wstęp}
+        \section{Pojęcia}
 		\input{pojecia.tex}
+		\section{Założenia projektu} 
 		\input{zalozenia_projektu.tex}
 		
     \chapter{Architektura}
+        \section{Platforma sprzętowa}
         \input{platforma_sprzetowa.tex}
+            \subsection{Raspberry Pi}
+            \input{raspberry_pi.tex}
+            \subsection{Atomic Pi}
+            \input{atomic_pi.tex}
+            \subsection{Banana Pi}
+            \input{banana_pi.tex}
+            \subsection{Obudowa}
+            \input{obudowa.tex}
+        \section{System} 
         \input{system.tex}
+        \section{Aplikacja} 
         \input{aplikacja.tex}
+            \subsection{Biblioteka bazowa}
+            \input{biblioteka_bazowa.tex}
+                \subsubsection{Obiekt}
+                \input{obiekt.tex}
+                    \paragraph{Fabryka}
+                    \input{fabryka.tex}
+                    \paragraph{Terminal}
+                    \input{terminal.tex}
+                    \paragraph{Powłoka}
+                    \input{powloka.tex}
+                    \paragraph{Urządzenie}
+                    \input{urzadzenie.tex}
+                        \subparagraph{ADC}
+                        \input{adc.tex}
+                        \subparagraph{DAC}
+                        \input{dac.tex}
+                        \subparagraph{CAN}
+                        \input{can.tex}
+            \subsection{Moduły}
+            \input{moduly.tex}
+                \subsubsection{Powłoka komend}
+                \input{powloka_komend.tex}
+                \subsubsection{Powłoka Python}
+                \input{powloka_python.tex}
+                \subsubsection{Powłoka Lua}
+                \input{powloka_lua.tex}
+                \subsubsection{Terminal strumieniowy}
+                \input{terminal_strumieniowy.tex}
+                \subsubsection{Sterownik ADS1256}
+                \input{sterownik_ads1256.tex}
+                \subsubsection{Sterownik DAC8532}
+                \input{sterownik_dac8532}
+
 	\chapter{Rozszerzenia}
-	
+        \section{Przetwornik analogowo cyfrowy}
+        \input{przetwornik_analogowo_cyfrowy.tex}
+        \section{Przetwornik cyfrowo analogowy}
+        \input{przetwornik_cyfrowo_analogowy.tex}
+        \section{Szyna CAN}
+        \input{szyna_can.tex}
+        \section{Tranzystor IGBT}
+        \input{tranzystor_igbt.tex}
+            \subsection{Bezpośrednie podłączenie}
+            \input{bezposrednie_podlaczenie.tex}
+            \subsection{Podłączenie przez przetwornik}
+            \input{podlaczenie_przez_przetwornik.tex}
 	\chapter{Eksploatacja}
+        \section{Instalacja}
+        \input{instalacja.tex}
+        \section{Konfiguracja}
+        \input{konfiguracja.tex}
+            \subsection{Tryby pracy}
+            \input{tryby_pracy.tex}
+                \subsubsection{Samodzielny}
+                \input{samodzielny.tex}
+                \subsubsection{Sieciowy}
+                \input{sieciowy.tex}
+            \subsection{Programy wsadowe}
+            \input{programy_wsadowe.tex}
+        \section{Integracja}
+        \input{integracja.tex}
+            \subsection{InfluxDB}
+            \input{influxdb.tex}
+            \subsection{Grafana}
+            \input{grafana.tex}
+            \subsection{Graphite}
+            \input{graphite.tex}
+            \subsection{Legacy}
+            \input{legacy.tex}
+    \chapter{Dodatki}
+        \section{Licencja}
+        \input{licencja.tex}
+        \section{Karta Gwarancyjna}
+        \input{karta_gwarancyjna.tex}
 						
 	\chapter{Elementy}
 		\input{obraz.tex}
