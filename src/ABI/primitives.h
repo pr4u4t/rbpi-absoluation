@@ -22,18 +22,18 @@ typedef enum _ ## name name;                                                    
 enum _ ## name {                                                                            \
 	MAP(PRINT_NUM,name,__VA_ARGS__)                                                         \
 };                                                                                          \
-static const char* name ## _ ## strings[][2] = {                  					                \
+static const char* name ## _ ## strings[][2] = {                  					        \
         MAP(PRINT_NARRAY,name,__VA_ARGS__)             						                \
         0                                               					                \
 };												                                            \
-static const char* name ## _to_string(int value){							                        \
+static const char* name ## _to_string(int value){							                \
 	for(const char** p = static_cast(const char**,name ## _ ## strings); *p != 0; ++p){	    \
 		if(static_cast(int*,*p) == *static_cast(int**,&value)) return *p;					\
 	}											                                            \
 	return 0;										                                        \
 }												                                            \
                                                                                             \
-static name string_to_ ## name(const char* ename){							                        \
+static name string_to_ ## name(const char* ename){							                \
 	for(const char** p = static_cast(const char**,name ## _ ## strings); *p != 0; ++p){	    \
 		if(*p == ename) return static_cast(name,*++p);					                    \
 	}											                                            \

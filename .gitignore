@@ -60,3 +60,4 @@ ltmain.sh
 **/.deps
 Makefile
 */Makefile
+**/Makefile
