@@ -35,14 +35,58 @@
  \tableofcontents
 \end{frame}
 
-\section{Introduction}
-    \input{present_introduction.tex}
-
-\section{Body} %a taki tam tytul sekcji
-    \input{present_body.tex}
-
-\section{Summary}
-    \input{present_summary.tex}
+	\section{Wstęp}
+        \subsection{Pojęcia}
+		\input{pojecia.tex}
+		\subsection{Założenia projektu} 
+		\input{zalozenia_projektu.tex}
+    \section{Architektura}
+    \input{architektura.tex}
+        \subsection{Platforma sprzętowa}
+        \input{platforma_sprzetowa.tex}
+        \subsection{System} 
+        \input{system.tex}
+        \subsection{Aplikacja} 
+        \input{aplikacja.tex}
+            \subsubsection{Biblioteka bazowa}
+            \input{biblioteka_bazowa.tex}
+            \subsubsection{Moduły}
+            \input{moduly.tex}
+	\section{Rozszerzenia}
+	\input{rozszerzenia.tex}
+        \subsection{Przetwornik analogowo cyfrowy}
+        \input{przetwornik_analogowo_cyfrowy.tex}
+        \subsection{Przetwornik cyfrowo analogowy}
+        \input{przetwornik_cyfrowo_analogowy.tex}
+        \subsection{Szyna CAN}
+        \input{szyna_can.tex}
+        \subsection{Tranzystor IGBT}
+        \input{tranzystor_igbt.tex}
+	\section{Eksploatacja}
+        \subsection{Tryby pracy}
+        \input{tryby_pracy.tex}
+            \subsubsection{Samodzielny}
+            \input{samodzielny.tex}
+            \subsubsection{Sieciowy}
+            \input{sieciowy.tex}
+        \subsection{Programy wsadowe}
+            \input{programy_wsadowe.tex}
+        \subsection{Integracja}
+        \input{integracja.tex}
+            \subsubsection{InfluxDB}
+            \input{influxdb.tex}
+            \subsubsection{Grafana}
+            \input{grafana.tex}
+            \subsubsection{Graphite}
+            \input{graphite.tex}
+            \subsubsection{Legacy}
+            \input{legacy.tex}
+    
+	\section{Elementy}
+		\input{slajd_1.tex}
+		\input{slajd_2.tex}
+       \input{slajd_3.tex}
+       \input{slajd_4.tex}
 
 % \section{Referências}
 % \begin{frame}
